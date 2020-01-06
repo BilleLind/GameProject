@@ -17,11 +17,14 @@ public class Main {
        double killingResult=Calculation.calculateKilling(kvothe.getChanceOfKilling(), kvothe.getNumberForChances(),  Calculation.generateRandomInt());
         //killingResult returns 1 or 0 of result in Calculation.  so 1= opponent died, 0= opponents survived about 1/5 within 1000 tries dies
 
+        double injuriedResult = Calculation.calculateInjuring(kvothe.getChanceOfInjuring(), kvothe.getNumberForChances(),Calculation.generateRandomInt());
+        // injured 2/5 in a 1000 tries 380-420 occurrencess
             int tally=0;
-        for (int i =0; i<1000; i++) {
-            double injuriedResult = Calculation.calculateInjuring(kvothe.getChanceOfInjuring(), kvothe.getNumberForChances(),Calculation.generateRandomInt());
 
-            if (injuriedResult==1.0) {
+        for (int i =0; i<1000; i++) {
+            double subduedResult = Calculation.calculateSubduing(kvothe.getChanceOfSubduing(), kvothe.getNumberForChances(),Calculation.generateRandomInt());
+
+            if (subduedResult==1.0) {
                 tally++;
                 System.out.println(tally);
             }

@@ -43,9 +43,38 @@ public class Calculation extends Player {
             result = 0; //the negativ result for the player
             System.out.println(result);
             System.out.println("the action failed");
-            return result;
-        }
-
+            return result;      }
     }
+
+    public static double calculateSubduing(double chanceNumber, double standardValue, double generatedNumber) {
+        double preResult = generatedNumber / standardValue;
+        System.out.println("generated: " + generatedNumber +" " +standardValue +" " + chanceNumber);
+        int result;
+        if (preResult < chanceNumber) {
+            result =1;
+            System.out.println(result);
+            System.out.println("The opponent was subdued");
+            return result;
+        } else  {result=0;
+            System.out.println(result);
+            System.out.println("The action failed");
+        return result;}
+    }
+
+    public static double calculateWinningOver(double chanceNumber, double standardValue, double generatedNumber) {
+        double preSult = generatedNumber / standardValue;
+        System.out.println("generated: " + generatedNumber +" "+ standardValue+" "+ chanceNumber);
+        int result;
+        if (preSult < chanceNumber) {
+            result = 1;
+            System.out.println(result);
+            System.out.println("The opponent was won over");
+            return result;
+        } else {result = 0;
+            System.out.println(result);
+            System.out.println("The action failed");
+        return result;}
+    }
+
 }
 
