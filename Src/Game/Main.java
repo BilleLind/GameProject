@@ -18,18 +18,14 @@ public class Main {
         //killingResult returns 1 or 0 of result in Calculation.  so 1= opponent died, 0= opponents survived about 1/5 within 1000 tries dies
 
         double injuriedResult = Calculation.calculateInjuring(kvothe.getChanceOfInjuring(), kvothe.getNumberForChances(),Calculation.generateRandomInt());
-        // injured 2/5 in a 1000 tries 380-420 occurrencess
-            int tally=0;
+        // injured 2/5 in a 1000 tries 380-420 occurrence's
 
-        for (int i =0; i<1000; i++) {
-            double subduedResult = Calculation.calculateSubduing(kvothe.getChanceOfSubduing(), kvothe.getNumberForChances(),Calculation.generateRandomInt());
+        double subduedResult = Calculation.calculateSubduing(kvothe.getChanceOfSubduing(), kvothe.getNumberForChances(),Calculation.generateRandomInt());
+        // subdued 225-267 out of 1000 => 1/4
 
-            if (subduedResult==1.0) {
-                tally++;
-                System.out.println(tally);
-            }
+        double winningOverResult = Calculation.calculateWinningOver(kvothe.getChanceOfWinningOver(), kvothe.getNumberForChances(), Calculation.generateRandomInt());
+        // 15-22 in 1000   0.02 => very rare
 
-        }
 
 
 
