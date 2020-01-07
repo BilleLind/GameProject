@@ -19,8 +19,8 @@ public class Game extends Main{
             System.out.println("************************************");
             System.out.println(" ");
             System.out.println("Please select Your character");
-            int choice= input.nextInt();
-            if (choice==1) {
+            int yourChoice= input.nextInt();
+            if (yourChoice==1) {
                 Player kvothe = new Player();           // instead of kvothe could be possible to make a input so that the object of Player would always would be the name of the character => all kvothe replaced with that input
                 kvothe.setName("Kvothe");               // it would make the Calculation.calculateKilling(INPUT.getChanceOfKilling )   and so on so it would get updated automatically
                 kvothe.setHealth(20);                   // that would delete the requirement for the choice between 1 2 or 3.... and just ask for the name at the start or 1, 2, 3 and 4 are premade and the fifth are the one you
@@ -59,39 +59,41 @@ public class Game extends Main{
 
             } else {
                 System.out.println("Error - please choose 1");
-                choice = input.nextInt(); }
+                yourChoice = input.nextInt(); }
 
-                                                                                                                            }
-                                                                                                                              }
+        }
+    }
 
-            public void choice() {   // the choice method -
-                System.out.println("Please choose a Action");
-                System.out.println();
-                Scanner input = new Scanner(System.in);
-                choice=input.next();
-                if (choice=="kill") {
-                    action="Kill";
-                }else if (choice=="wound") {
-                    action="wound";
-                }else if (choice=="subdue") {
-                    action="sudbue";
-                }else if (choice=="winOver") {
-                    action="winOver";
-                }else {action=null;}
+    public void theDifferentActions() {
+        Level1 level1Choice = new Level1();
 
-            }
+        if (choiceNumber == 1) {
+            level1Choice.firstChoices();
+        } else if (choiceNumber == 2) {
 
-            public void theDifferentActions() {
-            Level1 level1Choice = new Level1();
+        }
+    }
 
-                if (choiceNumber==1) {
-                    level1Choice.firstChoices();
-                } else if (choiceNumber==2) {
+    public String choice() {   // the choice method -
+        System.out.println("Please choose a Action");
+        System.out.println();
+        Scanner input = new Scanner(System.in);
+        choice=input.next();
+        if (choice=="kill") {
+            return action="Kill";
+        }else if (choice=="wound") {
+           return action="wound";
+        }else if (choice=="subdue") {
+            return action="sudbue";
+        }else if (choice=="winOver") {
+            return action="winOver";
+        }else if (choice=="flee") {
+           return action="flee";}
+        else if (choice=="talk") {
+            return action="talk";}
+        else {return action=null;}
 
-                }
-            }
-
-
+    }
 
 
 
