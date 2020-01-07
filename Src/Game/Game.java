@@ -4,7 +4,9 @@ import java.util.Scanner;
 
 public class Game extends Main{
     String choice;
-    String action = choice, kill = "kill", wound = "wound", subdue = "subdue", winOver = "winOver";
+    String action = choice, kill = "kill", wound = "wound", subdue = "subdue", winOver = "winOver", flee ="flee", talk="talk";
+
+    int choiceNumber;
 
 
 
@@ -31,21 +33,25 @@ public class Game extends Main{
 
 
                 if (action.equals(kill)) {
-                    double killingResult = Calculation.calculateKilling(kvothe.getChanceOfKilling(), kvothe.getNumberForChances(), Calculation.generateRandomInt());
+                    double Result = Calculation.calculateKilling(kvothe.getChanceOfKilling(), kvothe.getNumberForChances(), Calculation.generateRandomInt());
                     //killingResult returns 1 or 0 of result in Calculation.  so 1= opponent died, 0= opponents survived about 1/5 within 1000 tries dies
                 }
                 if (action.equals(wound)) {
-                    double injuriedResult = Calculation.calculateInjuring(kvothe.getChanceOfInjuring(), kvothe.getNumberForChances(), Calculation.generateRandomInt());
+                    double Result = Calculation.calculateInjuring(kvothe.getChanceOfInjuring(), kvothe.getNumberForChances(), Calculation.generateRandomInt());
                     // injured 2/5 in a 1000 tries 380-420 occurrence's
                 }
                 if (action.equals(subdue)) {
-                    double subduedResult = Calculation.calculateSubduing(kvothe.getChanceOfSubduing(), kvothe.getNumberForChances(), Calculation.generateRandomInt());
+                    double Result = Calculation.calculateSubduing(kvothe.getChanceOfSubduing(), kvothe.getNumberForChances(), Calculation.generateRandomInt());
                     // subdued 225-267 out of 1000 => 1/4
                 }
                 if (action.equals(winOver)) {
-                    double winningOverResult = Calculation.calculateWinningOver(kvothe.getChanceOfWinningOver(), kvothe.getNumberForChances(), Calculation.generateRandomInt());
+                    double Result = Calculation.calculateWinningOver(kvothe.getChanceOfWinningOver(), kvothe.getNumberForChances(), Calculation.generateRandomInt());
                     // 15-22 in 1000   0.02 => very rare
                 }
+                if (action.equals(talk)) {
+                    double Result= Calculation.calculateOneInTenth();
+                }
+
                 System.out.println("You have chosen character: " +choice);
                 System.out.println("Your characters name is: " + kvothe.getName());
                 System.out.println("Your character have: " + kvothe.getHealth() + " Health");
@@ -72,10 +78,17 @@ public class Game extends Main{
                 }else if (choice=="winOver") {
                     action="winOver";
                 }else {action=null;}
+
             }
 
             public void theDifferentActions() {
-                System.out.println("");
+            Level1 level1Choice = new Level1();
+
+                if (choiceNumber==1) {
+                    level1Choice.firstChoices();
+                } else if (choiceNumber==2) {
+
+                }
             }
 
 

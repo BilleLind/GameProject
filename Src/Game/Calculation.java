@@ -76,5 +76,31 @@ public class Calculation extends Player {
         return result;}
     }
 
+    public static double calculateOneInTenth() {
+        int result=0;
+        if( generateRandomInt() < 0.1) {
+            return result =1;
+        } else return 0;    }
+
+    public static double calculateOneInFifth() {
+        int result=0;
+        if( generateRandomInt() < 0.2) {
+            return result =1;
+        } else return 0;    }
+
+    public static double calculateOneInTwp() {
+        int result=0;
+        if( generateRandomInt() < 0.5) {
+            return result =1;
+        } else return 0;    }
+
+    public static double calculateOneEight() {
+        int result=0;
+        if( generateRandomInt() < 0.12) {
+            return result =1;
+        } else return 0;    }
+
+
+
 }
 
