@@ -6,7 +6,7 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Hello this is my first real game project!");
 
-        Player kvothe = new Player();
+       /* Player kvothe = new Player();
         kvothe.setHealth(20);
 
         kvothe.setNumberForChances(2);
@@ -25,6 +25,9 @@ public class Main {
 
         double winningOverResult = Calculation.calculateWinningOver(kvothe.getChanceOfWinningOver(), kvothe.getNumberForChances(), Calculation.generateRandomInt());
         // 15-22 in 1000   0.02 => very rare
+    */
+        Game g = new Game();
+        g.gameRunning();
 
 
 

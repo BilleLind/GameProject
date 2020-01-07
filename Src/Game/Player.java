@@ -7,6 +7,7 @@ public class Player {
     //included all the different starter bonuses
 
     private int health;
+    private String name;
     private double chanceOfKilling; // these four is instead of the "old fashioned" damage :D
     private double chanceOfInjuring;
     private double chanceOfSubduing;
@@ -59,5 +60,13 @@ public class Player {
 
     public void setChanceOfWinningOver(double chanceOfWinningOver) {
         this.chanceOfWinningOver = chanceOfWinningOver;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
