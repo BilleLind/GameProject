@@ -100,7 +100,28 @@ public class Calculation extends Player {
             return result =1;
         } else return 0;    }
 
-
+    public static void whichCalc() {
+        Game g = new Game();
+    /* if (action.equals(kill)) {
+                    double Result = Calculation.calculateKilling(kvothe.getChanceOfKilling(), kvothe.getNumberForChances(), Calculation.generateRandomInt());
+                    //killingResult returns 1 or 0 of result in Calculation.  so 1= opponent died, 0= opponents survived about 1/5 within 1000 tries dies
+                }
+                if (action.equals(wound)) {
+                    double Result = Calculation.calculateInjuring(kvothe.getChanceOfInjuring(), kvothe.getNumberForChances(), Calculation.generateRandomInt());
+                    // injured 2/5 in a 1000 tries 380-420 occurrence's
+                }
+                if (action.equals(subdue)) {
+                    double Result = Calculation.calculateSubduing(kvothe.getChanceOfSubduing(), kvothe.getNumberForChances(), Calculation.generateRandomInt());
+                    // subdued 225-267 out of 1000 => 1/4
+                }
+                if (action.equals(winOver)) {
+                    double Result = Calculation.calculateWinningOver(kvothe.getChanceOfWinningOver(), kvothe.getNumberForChances(), Calculation.generateRandomInt());
+                    // 15-22 in 1000   0.02 => very rare
+                }
+                if (action.equals(talk)) {
+                    double Result= Calculation.calculateOneInTenth();
+                } */
+    }
 
 }
 
