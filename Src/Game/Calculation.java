@@ -94,7 +94,13 @@ public class Calculation extends Player {
 
     public static double calculateOneSeveth() {
         int result=0;
-        if( generateRandomInt() < 0.1428‬) {
+        if( generateRandomInt() <0.14) {
+            return result =1;
+        } else return 0;    }
+
+    public static double calculateOneSix() {
+        int result=0;
+        if( generateRandomInt() <0.166) {
             return result =1;
         } else return 0;    }
 
@@ -104,11 +110,21 @@ public class Calculation extends Player {
             return result =1;
         } else return 0;    }
 
+    public static double calculateOneFourth() {
+        int result=0;
+        if( generateRandomInt() <0.25) {
+            return result =1;
+        } else return 0;    }
+
     public static double calculateOneInTwo() {
         int result=0;
         if( generateRandomInt() < 0.5) {
             return result =1;
         } else return 0;    }
+
+    public static double calculateOne() {
+        return 1; }
+
 
 
 
