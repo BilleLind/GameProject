@@ -89,7 +89,10 @@ public class Game extends Main{
         if (action=="kill") {
             return Calculation.calculateOneInFifth();
 
+        }else if (action=="wound") {
+            return 0;
         }
+        return 0;
     }
 
 

@@ -12,7 +12,7 @@ public class Calculation extends Player {
         return genResult;
     }
 
-    public static double calculateKilling(double chanceNumber, double standardValue, double generatedNumber) {
+   /* public static double calculateKilling(double chanceNumber, double standardValue, double generatedNumber) {
         double preResult = generatedNumber / standardValue;
         // System.out.println("generated: " + generatedNumber + " " + standardValue + " " + chanceNumber); test part
         int result;
@@ -26,11 +26,9 @@ public class Calculation extends Player {
             System.out.println("the opponent lived"); //test part
             return result;
         }
+    } */
 
-
-    }
-
-    public static double calculateInjuring(double chanceNumber, double standardValue, double generatedNumber) {
+   /* public static double calculateInjuring(double chanceNumber, double standardValue, double generatedNumber) {
         double preResult = generatedNumber / standardValue;
         System.out.println("generated: " + generatedNumber + " " + standardValue + " " + chanceNumber);
         int result;
@@ -44,9 +42,9 @@ public class Calculation extends Player {
             System.out.println(result);
             System.out.println("the action failed");
             return result;      }
-    }
+    } */
 
-    public static double calculateSubduing(double chanceNumber, double standardValue, double generatedNumber) {
+  /*public static double calculateSubduing(double chanceNumber, double standardValue, double generatedNumber) {
         double preResult = generatedNumber / standardValue;
         System.out.println("generated: " + generatedNumber +" " +standardValue +" " + chanceNumber);
         int result;
@@ -59,9 +57,9 @@ public class Calculation extends Player {
             System.out.println(result);
             System.out.println("The action failed");
         return result;}
-    }
+    } */
 
-    public static double calculateWinningOver(double chanceNumber, double standardValue, double generatedNumber) {
+   /* public static double calculateWinningOver(double chanceNumber, double standardValue, double generatedNumber) {
         double preSult = generatedNumber / standardValue;
         System.out.println("generated: " + generatedNumber +" "+ standardValue+" "+ chanceNumber);
         int result;
@@ -74,11 +72,29 @@ public class Calculation extends Player {
             System.out.println(result);
             System.out.println("The action failed");
         return result;}
-    }
+    } */
 
     public static double calculateOneInTenth() {
         int result=0;
         if( generateRandomInt() < 0.1) {
+            return result =1;
+        } else return 0;    }
+
+    public static double calculateOneNine() {
+        int result=0;
+        if( generateRandomInt() < 0.11) {
+            return result =1;
+        } else return 0;    }
+
+    public static double calculateOneEight() {
+        int result=0;
+        if( generateRandomInt() < 0.12) {
+            return result =1;
+        } else return 0;    }
+
+    public static double calculateOneSeveth() {
+        int result=0;
+        if( generateRandomInt() < 0.1428‬) {
             return result =1;
         } else return 0;    }
 
@@ -88,17 +104,13 @@ public class Calculation extends Player {
             return result =1;
         } else return 0;    }
 
-    public static double calculateOneInTwp() {
+    public static double calculateOneInTwo() {
         int result=0;
         if( generateRandomInt() < 0.5) {
             return result =1;
         } else return 0;    }
 
-    public static double calculateOneEight() {
-        int result=0;
-        if( generateRandomInt() < 0.12) {
-            return result =1;
-        } else return 0;    }
+
 
     public static void whichCalc() {
         Game g = new Game();

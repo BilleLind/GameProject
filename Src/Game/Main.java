@@ -29,6 +29,15 @@ public class Main {
         Game g = new Game();
         g.gameRunning();
 
+        for (int i =0; i<1000; i++) {
+            int tally=0;
+            double result = Calculation.calculateOneInFifth();
+            if (result<0.5) {
+                tally++;
+            }
+            System.out.println(tally);
+        }
+
 
 
 
