@@ -85,6 +85,14 @@ public class Game extends Main{
 
     }
 
+    public double checkChoice() {
+        if (action=="kill") {
+            return Calculation.calculateOneInFifth();
+
+        }
+    }
+
+
 
 
 }
