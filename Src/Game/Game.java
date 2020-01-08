@@ -28,7 +28,7 @@ public class Game extends Main{
             kvothe.setChanceOfKilling(0.1);
             kvothe.setChanceOfInjuring(0.2);
             kvothe.setChanceOfSubduing(0.12);
-            kvothe.setChanceOfWinningOver(0.01);
+            kvothe.setChanceOfWinningOver(0.01); // this is un used at this moment
 
 
 
@@ -49,6 +49,7 @@ public class Game extends Main{
            System.out.println("");
            level.firstChoices();
            choice();
+           checkFirstChoice();
 
 
         }
@@ -85,12 +86,14 @@ public class Game extends Main{
 
     }
 
-    public double checkChoice() {
+    public double checkFirstChoice() {
         if (action=="kill") {
             return Calculation.calculateOneInFifth();
 
         }else if (action=="wound") {
-            return 0;
+            return Calculation.calculateOneEight();
+        } else if (action=="subdue") {
+            return Calculation.calculateOneInHundred();
         }
         return 0;
     }

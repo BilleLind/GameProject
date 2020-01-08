@@ -6,10 +6,9 @@ public class Calculation extends Player {
     // this will be the where all the calculation will be made
 
 
-    public static double generateRandomInt() {
+    public static double generateRandomDouble() {
         Random random = new Random();
-        double genResult = random.nextDouble();
-        return genResult;
+        return random.nextDouble()*1;
     }
 
    /* public static double calculateKilling(double chanceNumber, double standardValue, double generatedNumber) {
@@ -74,58 +73,82 @@ public class Calculation extends Player {
         return result;}
     } */
 
+   // by using these i can make sure that the odds are more easy to manage in the beginning later on i could add
+    // a luck method into it that changes the values a bit
     public static double calculateOneInTenth() {
         int result=0;
-        if( generateRandomInt() < 0.1) {
+        if( generateRandomDouble() < 0.1) {
             return result =1;
         } else return 0;    }
 
     public static double calculateOneNine() {
         int result=0;
-        if( generateRandomInt() < 0.11) {
+        if( generateRandomDouble() < 0.11) {
             return result =1;
         } else return 0;    }
 
     public static double calculateOneEight() {
         int result=0;
-        if( generateRandomInt() < 0.12) {
+        if( generateRandomDouble() < 0.12) {
             return result =1;
         } else return 0;    }
 
     public static double calculateOneSeveth() {
         int result=0;
-        if( generateRandomInt() <0.14) {
+        if( generateRandomDouble() <0.14) {
             return result =1;
         } else return 0;    }
 
     public static double calculateOneSix() {
         int result=0;
-        if( generateRandomInt() <0.166) {
+        if( generateRandomDouble() <0.166) {
             return result =1;
         } else return 0;    }
 
     public static double calculateOneInFifth() {
         int result=0;
-        if( generateRandomInt() < 0.2) {
+        if( generateRandomDouble() < 0.2) {
             return result =1;
         } else return 0;    }
 
     public static double calculateOneFourth() {
         int result=0;
-        if( generateRandomInt() <0.25) {
+        if( generateRandomDouble() <0.25) {
             return result =1;
         } else return 0;    }
 
     public static double calculateOneInTwo() {
         int result=0;
-        if( generateRandomInt() < 0.5) {
+        if( generateRandomDouble() < 0.5) {
             return result =1;
         } else return 0;    }
 
     public static double calculateOne() {
         return 1; }
 
+    public static double calculateOneInTwenty() {
+        int result=0;
+        if( generateRandomDouble() < 0.05) {
+            return result =1;
+        } else return 0;    }
 
+    public static double calculateOneInFifty() {
+        int result=0;
+        if( generateRandomDouble() < 0.02) {
+            return result =1;
+        } else return 0;    }
+
+    public static double calculateOneInHundred() {
+        int result=0;
+        if( generateRandomDouble() < 0.01) {
+            return result =1;
+        } else return 0;    }
+
+    public static double calculateOneInThousand() {
+        int result=0;
+        if( generateRandomDouble() < 0.001) {
+            return result =1;
+        } else return 0;    }
 
 
     public static void whichCalc() {

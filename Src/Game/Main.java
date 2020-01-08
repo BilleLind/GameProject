@@ -26,17 +26,20 @@ public class Main {
         double winningOverResult = Calculation.calculateWinningOver(kvothe.getChanceOfWinningOver(), kvothe.getNumberForChances(), Calculation.generateRandomInt());
         // 15-22 in 1000   0.02 => very rare
     */
-        Game g = new Game();
+       Game g = new Game();
         g.gameRunning();
 
+        /*int tally=0;
         for (int i =0; i<1000; i++) {
-            int tally=0;
-            double result = Calculation.calculateOneInFifth();
-            if (result<0.5) {
+
+            double result = Calculation.calculateOneInTenth();
+            System.out.println(result);
+            if (result ==1) {
                 tally++;
+                System.out.println(tally);
             }
-            System.out.println(tally);
-        }
+
+        } */
 
 
 
