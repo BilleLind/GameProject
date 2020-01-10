@@ -42,7 +42,9 @@ private String name;
         return name;
     }
 
-
+public boolean opponentAlive() {
+        return hp >0;
+}
 
 
 

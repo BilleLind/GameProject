@@ -8,7 +8,7 @@ public class Game extends Main {
     String choice;
     String attack = "attack", wound = "wound", subdue = "subdue", winOver = "winOver", flee = "flee", talk = "talk", cheat = "cheat";
     Humans h = new Humans();
-
+    Player player = new Player();
 
 
     public void gameRunning() {
@@ -23,20 +23,31 @@ public class Game extends Main {
             // that would delete the requirement for the choice between 1 2 or 3.... and just ask for the name at the start or 1, 2, 3 and 4 are premade and the fifth are the one you
             //can customize to your desire
 
-            Player kvothe = new Player();
-            kvothe.setName("Kvothe");
-            kvothe.setHealth(20);
-            kvothe.setBornWithTalent(3);
-            kvothe.setWeapon(0);
-            kvothe.setEquipment(0);
-            kvothe.setAttack(3);
-            kvothe.setDefence(2);
+
+            player.setName("Kvothe");
+            player.setHealth(20);
+            player.setBornWithTalent(3);
+            player.setWeapon(0);
+            player.setEquipment(0);
+            player.setAttack(3);
+            player.setDefence(2);
             System.out.println("You have chosen character: " + yourChoice);
-            System.out.println("Your characters name is: " + kvothe.getName());  // to be displayed at the top of the program
-            System.out.println("Your character have: " + kvothe.getHealth() + " Health");
+            System.out.println("Your characters name is: " + player.getName());  // to be displayed at the top of the program
+            System.out.println("Your character have: " + player.getHealth() + " Health");
             System.out.println("Your character is generally skilled");
 
-        } else {
+        } else if (yourChoice==2) {
+            player.setName("Reshi");
+            player.setHealth(18);
+            player.setDefence(4);
+            player.setAttack(4);
+            player.setEquipment(0);
+            player.setWeapon(0);
+            player.setBornWithTalent(4);
+            System.out.println("You have chosen character: " + yourChoice);
+            System.out.println("Your characters name is: " + player.getName());
+            System.out.println("Your character have: " + player.getHealth() + " Health");
+        }else{
             System.out.println("Error - please choose 1");
             yourChoice = input.nextInt();
         }
@@ -50,41 +61,32 @@ public class Game extends Main {
         level.firstChoicesStory();
         level.firstChoices();
 
-        if (level.getFirstchoiceinlevel()==10) {
-            System.out.println("succes");
+        if (level.getFirstchoiceinlevel()==1) {
+            System.out.println("success");
             h.human1Method();
             h.human2Method();
             System.out.println(h.human1.getAtk());
             System.out.println(h.human2.getAtk());
+            //make a combat method,
+            // if (yourChoice==1) {kvothe.get....  => String playerName; => playerName=kvothe  so i only need to write the get methods one time
+            if (yourChoice==1) {
+                //player.getHealth();
+                //System.out.println(player.getHealth());
+                combatMethod();
+            } else if (yourChoice==2) {
 
-
+                System.out.println(player.getHealth());
+            }
 
         } else if (level.getFirstchoiceinlevel()==5) {
-            System.out.println("succes 2");
+            System.out.println("success 2");
 
         }
 
 
 
 
-           /*if(choices()==1) {
-               // to be shortened and made into method later on
-               System.out.println("Yeaah det virkede");
-               break; // for now
-           } else { System.out.println("øv :(");
-               System.out.println(choices());} */
-
-
     }
-
-   /* public void theDifferentActions() {
-        Levels levelChoice = new Levels();
-
-        if (choiceNumber == 1) {
-            levelChoice.firstChoices();
-        } else if (choiceNumber == 2) {
-
-        }    } */
 
     public void choices() {   // the choice method -
         System.out.println("Please choose a Action");
@@ -131,23 +133,19 @@ public class Game extends Main {
         }
     }
 
-   /* public double checkFirstChoice() {
-        if (action=="kill") {
-            return Calculation.calculateOneInFifth();
+   public void combatMethod() {
 
-        }else if (action=="wound") {
-            return Calculation.calculateOneEight();
-        } else if (action=="subdue") {
-            return Calculation.calculateOneInHundred();
-        } else if (action=="winOver") {
-            return Calculation.calculateOneInThousand();
-        } else if (action=="flee") {
-            return Calculation.calculateOneFourth();
-        }else if (action=="talk") {
-            return Calculation.calculateOneInTenth();
-        }else if (action=="cheat") {
-            return Calculation.calculateOne();
-        }else {return 0;}   } */
+
+      while (player.isAlive() ||h.human1.opponentAlive() && h.human2.opponentAlive()) // how to do this with different opponents?
+       {
+           System.out.println("yeaah");
+
+        }
+      //else if (!player.isAlive()) {
+          //System.out.println("more yeaah");
+      //}
+
+   }
 
 }
 

@@ -69,4 +69,8 @@ public class Player {
     public void setBornWithTalent(int bornWithTalent) {
         this.bornWithTalent = bornWithTalent;
     }
+
+    public boolean isAlive() {
+        return health >0;
+    }
 }
