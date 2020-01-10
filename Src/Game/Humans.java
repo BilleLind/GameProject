@@ -2,19 +2,18 @@ package Game;
 
 public class Humans extends  Adversaries {
 
-    public Humans(String name, int hp, int damage, int atk, int def) {
-        super(name, hp, damage, atk, def);
-    } // in the Game or Calc? where it uses calculations for the values and set it afterwards gets?
-
-
-
-
-    public void combatAdversarie(Humans humans) {
-        System.out.println("You are facing down:" + humans.getName());
-
-
+    Adversaries human1 = new Adversaries();
+    Adversaries human2 = new Adversaries();
+    public void human1Method() {
+        human1.setAtk(3);
+        human1.setDef(1);
+        human1.setHp(5);
+        human1.setName("Bandit 1");
     }
-
-
-
+    public void human2Method() {
+        human2.setAtk(2);
+        human2.setDef(0);
+        human2.setHp(6);
+        human2.setName("Bandit 2");
+    }
 }

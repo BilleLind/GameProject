@@ -1,17 +1,18 @@
 package Game;
 
+import java.lang.reflect.AccessibleObject;
 import java.util.Scanner;
 
 public class Game extends Main {
     Scanner input = new Scanner(System.in);
     String choice;
     String attack = "attack", wound = "wound", subdue = "subdue", winOver = "winOver", flee = "flee", talk = "talk", cheat = "cheat";
-    Levels level = new Levels();
-    int choiceNumber;
+    Humans h = new Humans();
+
 
 
     public void gameRunning() {
-        boolean running = true;
+
 
         System.out.println("Hello this is the menu for this game");
         System.out.println("************************************");
@@ -49,11 +50,21 @@ public class Game extends Main {
         level.firstChoicesStory();
         level.firstChoices();
 
-        System.out.println(level.getFirstchoiceinlevel());
+        if (level.getFirstchoiceinlevel()==10) {
+            System.out.println("succes");
+            h.human1Method();
+            h.human2Method();
+            System.out.println(h.human1.getAtk());
+            System.out.println(h.human2.getAtk());
 
-        if (level.getFirstchoiceinlevel() == 10) {
-            System.out.println("you cheated!! number 2");
+
+
+        } else if (level.getFirstchoiceinlevel()==5) {
+            System.out.println("succes 2");
+
         }
+
+
 
 
            /*if(choices()==1) {
@@ -82,37 +93,37 @@ public class Game extends Main {
         switch (choice) {
             case "attack":
                 System.out.println("attack");
-                level.setFirstchoiceinlevel(1);
+             //   setFirstchoiceinlevel(1);
 
                 break;
             case "wound":
                 System.out.println("wound");
-                level.setFirstchoiceinlevel(2);
+                //setFirstchoiceinlevel(2);
 
                 break;
             case "subdue":
                 System.out.println("subdue");
-                level.setFirstchoiceinlevel(3);
+               // level.setFirstchoiceinlevel(3);
 
                 break;
             case "winOver":
                 System.out.println("winOver");
-                level.setFirstchoiceinlevel(4);
+              //  level.setFirstchoiceinlevel(4);
 
                 break;
             case "flee":
-                level.setFirstchoiceinlevel(5);
+               /// level.setFirstchoiceinlevel(5);
 
                 System.out.println("flee");
 
                 break;
             case "talk":
                 System.out.println("talk");
-                level.setFirstchoiceinlevel(6);
+              //  level.setFirstchoiceinlevel(6);
                 break;
             case "cheat":
                 System.out.println("cheat");
-                level.setFirstchoiceinlevel(10);
+             //   level.setFirstchoiceinlevel(10);
                 break;
             default:
                 System.out.println("failure");
