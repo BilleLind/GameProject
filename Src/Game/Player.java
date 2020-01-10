@@ -8,58 +8,14 @@ public class Player {
 
     private int health;
     private String name;
-    private double chanceOfKilling; // these four is instead of the "old fashioned" damage :D
-    private double chanceOfInjuring;
-    private double chanceOfSubduing;
-    private double chanceOfWinningOver;
-    private double numberForChances;
+    private int attack;
+    private int defence;
+    private int weapon;
+    private int equipment;
+    private int bornWithTalent;
 
     public int getHealth() {
         return health;
-    }
-
-    public double getNumberForChances() {
-        return numberForChances;
-    }
-
-    public void setNumberForChances(double numberForChances) {
-        this.numberForChances = numberForChances;
-    }
-
-    public double getChanceOfKilling() {
-        return chanceOfKilling;
-    }
-
-    public double getChanceOfInjuring() {
-        return chanceOfInjuring;
-    }
-
-    public double getChanceOfSubduing() {
-        return chanceOfSubduing;
-    }
-
-    public double getChanceOfWinningOver() {
-        return chanceOfWinningOver;
-    }
-
-    public void setHealth(int health) {
-        this.health = health;
-    }
-
-    public void setChanceOfKilling(double chanceOfKilling) {
-        this.chanceOfKilling = chanceOfKilling;
-    }
-
-    public void setChanceOfInjuring(double chanceOfInjuring) {
-        this.chanceOfInjuring = chanceOfInjuring;
-    }
-
-    public void setChanceOfSubduing(double chanceOfSubduing) {
-        this.chanceOfSubduing = chanceOfSubduing;
-    }
-
-    public void setChanceOfWinningOver(double chanceOfWinningOver) {
-        this.chanceOfWinningOver = chanceOfWinningOver;
     }
 
     public String getName() {
@@ -68,5 +24,49 @@ public class Player {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public int getAttack() {
+        return attack;
+    }
+
+    public int getDefence() {
+        return defence;
+    }
+
+    public int getWeapon() {
+        return weapon;
+    }
+
+    public int getEquipment() {
+        return equipment;
+    }
+
+    public int getBornWithTalent() {
+        return bornWithTalent;
+    }
+
+    public void setAttack(int attack) {
+        this.attack = attack;
+    }
+
+    public void setDefence(int defence) {
+        this.defence = defence;
+    }
+
+    public void setEquipment(int equipment) {
+        this.equipment = equipment;
+    }
+
+    public void setWeapon(int weapon) {
+        this.weapon = weapon;
+    }
+
+    public void setBornWithTalent(int bornWithTalent) {
+        this.bornWithTalent = bornWithTalent;
     }
 }

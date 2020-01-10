@@ -12,7 +12,7 @@ public class Levels {
 
 
         final double chanceOfBossEncounter=0.05; // 5%, times levelNumber so chances will be higher further one
-        Game c = new Game();
+
 
         public void preStoryKvothe(){
                 System.out.println("in the times before one of the small wars considering the ancient wars all know\n" +
@@ -46,22 +46,11 @@ public class Levels {
         public void firstChoices() {
                 boolean firstChoicesRunning=true;
                 first: while (firstChoicesRunning) {
-                        System.out.println("choice 1: Attack the on in front - kill");
+                        System.out.println("choice 1: Attack the on in front - attack");
                         System.out.println("choice 2: Take to the trees and flee - flee");
                         System.out.println("choice 3: Subdue Them - subdue");
-                        c.choices();
-                        if (c.choice.equals("kill")) {
-                                setFirstchoiceinlevel(5);
-                                break;
-                        }else if (c.choice.equals("flee")) {
-                                break;
-                        } else if (c.choice.equals("subdue")) {
-                                break;
-                        } else if (c.choice.equals("cheat")) {
-                                System.out.println("Breaking");
-                                setFirstchoiceinlevel(1);
-                                break;
-                        }else {}
+
+
 
 
 
