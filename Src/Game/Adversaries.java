@@ -8,6 +8,8 @@ private int hp;
 private int atk;
 private int def;
 private String name;
+private int initialized=0;
+private int killed=1;
 
     public void setName(String name) {
         this.name = name;
@@ -42,8 +44,32 @@ private String name;
         return name;
     }
 
-public boolean opponentAlive() {
-        return hp >0;
+    public void setKilled(int killed) {
+        this.killed = killed;
+    }
+
+    public void setInitialized(int initialized) {
+        this.initialized = initialized;
+    }
+
+    public int getInitialized() {
+        return initialized;
+    }
+
+    public int getKilled() {
+        return killed;
+    }
+
+    public boolean opponentInitialized() {
+        return initialized ==1;
+    }
+
+    public boolean opponentKilled() {
+        return killed==0;
+    }
+
+    public boolean opponentAlive() {
+        return hp >0 || opponentKilled();
 }
 
 

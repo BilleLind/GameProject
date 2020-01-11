@@ -1,6 +1,5 @@
 package Game;
 
-import java.lang.reflect.AccessibleObject;
 import java.util.Scanner;
 
 public class Game extends Main {
@@ -9,8 +8,9 @@ public class Game extends Main {
     String attack = "attack", wound = "wound", subdue = "subdue", winOver = "winOver", flee = "flee", talk = "talk", cheat = "cheat";
     Humans h = new Humans();
     Player player = new Player();
-    boolean firstCombatWon =false;
+    boolean firstCombatWon =false, firstCombatFleet=false; // will be used for a victory sheet of sort
     int playerDamageDealt, adversariesDamageDealt;
+    int attackChoice;
 
     public void gameRunning() {
 
@@ -66,22 +66,25 @@ public class Game extends Main {
             System.out.println("success");
             h.human1Method();
             h.human2Method();
-            System.out.println(h.human1.getAtk());
-            System.out.println(h.human2.getAtk());
-            //make a combat method,
-            // if (yourChoice==1) {kvothe.get....  => String playerName; => playerName=kvothe  so i only need to write the get methods one time
-            if (yourChoice==1) {
-                //player.getHealth();
-                //System.out.println(player.getHealth());
-                combatMethod();
-            } else if (yourChoice==2) {
-
-                System.out.println(player.getHealth());
-            }
-
+            System.out.println("Attack either the one in front - 1");
+            System.out.println("Or attack the one in the back - 2");
+            combatMethod();
         } else if (level.getFirstchoiceinlevel()==5) {
             System.out.println("success 2");
-
+            if (Calculation.calculateOneEight()==1) {
+                firstCombatFleet=true;
+            }else { System.out.println("Attack either the one in front - 1");
+                    System.out.println("Or attack the one in the back - 2");
+                    combatMethod();}
+        } else if (level.getFirstchoiceinlevel()==3) {
+            if (Calculation.calculateOneInThousand()==1) {
+                player.setHealth(player.getHealth()-2);
+                System.out.println("You have lost 2 health while subduing the enemy!");
+                System.out.println("you have gained their weapons and coins!");
+                player.setWeapon(2);
+                player.setCoins(4);
+                firstCombatWon=true;
+            }
         }
 
 
@@ -170,33 +173,70 @@ public class Game extends Main {
        }
    }
       public void playerAttack() {
-          int attackChoice=input.nextInt();
-          System.out.println("Attack bandit1: 1");
-          System.out.println("Attack bandit2: 2");
+         attackChoice=input.nextInt();
           if (attackChoice==1) {
               if (!h.human1.opponentAlive()) {
-                  System.out.println("Bandit1 is dead your dimwit");
-                  attackChoice=2;
-              }
+                  System.out.println(h.human1.getName()+" is dead your dimwit");
+                  h.human1.setKilled(0);
+                  attackChoice=2;  }
               System.out.println("you are attacking" + h.human1.getName());
               playerDamageDealt=Calculation.generateRandomInt(player.getAttack());
               System.out.println(" damage dealt:" +playerDamageDealt);
               int currentHP =h.human1.getHp();
               h.human1.setHp(currentHP-playerDamageDealt);
               System.out.println("1 health :" +h.human1.getHp());
+                mobAttackBack1();
           }else if (attackChoice==2) {
               if (!h.human2.opponentAlive()) {
-                  System.out.println("Bandit2 is dead your dimwit");
-                  attackChoice=1;
-              }
+                  System.out.println(h.human2.getName()+" is dead your dimwit");
+                  h.human2.setKilled(0);
+                  attackChoice=1;   }
               System.out.println("you are attacking" + h.human2.getName());
               playerDamageDealt=Calculation.generateRandomInt(player.getAttack());
               System.out.println(" damage dealt:" +playerDamageDealt);
               int currentHP =h.human2.getHp();
               h.human2.setHp(currentHP-playerDamageDealt);
               System.out.println("2 health :" + h.human2.getHp());
+                mobAttackBack1();          }
+
+          if (h.human1.opponentKilled() && h.human2.opponentKilled()) {
+              firstCombatWon=true;
           }
        }
+       public void combatFillOut() {
+
+       }
+
+       public void mobAttackBack1() {
+        for (int i=0; i<1;i++) {
+           if (h.human1.opponentAlive() && h.human1.opponentInitialized()) {
+               adversariesDamageDealt = Calculation.generateRandomInt(h.human1.getAtk());
+               int playerCurrentHP =player.getHealth();
+               player.setHealth(playerCurrentHP-adversariesDamageDealt); }
+           if (h.human2.opponentAlive() && h.human2.opponentInitialized()) {
+               adversariesDamageDealt = Calculation.generateRandomInt(h.human2.getAtk());
+               player.setHealth(player.getHealth()-adversariesDamageDealt); }
+                } }
+      public void mobAttackBack2() {
+        for (int i=0; i<1;i++) {
+            if (h.human3.opponentAlive() && h.human3.opponentInitialized()) {
+                adversariesDamageDealt = Calculation.generateRandomInt(h.human3.getAtk());
+                int playerCurrentHP =player.getHealth();
+                player.setHealth(playerCurrentHP-adversariesDamageDealt); }
+            if (h.human4.opponentAlive() && h.human4.opponentInitialized()) {
+                adversariesDamageDealt = Calculation.generateRandomInt(h.human4.getAtk());
+                player.setHealth(player.getHealth()-adversariesDamageDealt); }
+                } }
+    public void mobAttackBack3() {
+        for (int i=0; i<1;i++) {
+            if (h.human5.opponentAlive() && h.human5.opponentInitialized()) {
+                adversariesDamageDealt = Calculation.generateRandomInt(h.human5.getAtk());
+                int playerCurrentHP =player.getHealth();
+                player.setHealth(playerCurrentHP-adversariesDamageDealt); }
+            if (h.human6.opponentAlive() && h.human6.opponentInitialized()) {
+                adversariesDamageDealt = Calculation.generateRandomInt(h.human6.getAtk());
+                player.setHealth(player.getHealth()-adversariesDamageDealt); }
+        } }
 
 
       //else if (!player.isAlive()) {

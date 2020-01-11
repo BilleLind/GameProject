@@ -13,6 +13,7 @@ public class Player {
     private int weapon;
     private int equipment;
     private int bornWithTalent;
+    private int coins;
 
     public int getHealth() {
         return health;
@@ -72,5 +73,13 @@ public class Player {
 
     public boolean isAlive() {
         return health >0;
+    }
+
+    public int getCoins() {
+        return coins;
+    }
+
+    public void setCoins(int coins) {
+        this.coins = coins;
     }
 }
