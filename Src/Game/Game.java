@@ -56,7 +56,6 @@ public class Game extends Main {
 
         //TODO START OF "PROGRAM" perhaps not a loop as it goes back instead and reads the story
         Levels level = new Levels();
-        Calculation calc = new Calculation();
         level.preStoryKvothe();
         System.out.println("");
         level.firstChoicesStory();
@@ -65,7 +64,9 @@ public class Game extends Main {
         if (level.getFirstchoiceinlevel()==1) {
             System.out.println("success");
             h.human1Method();
+            h.human1.setInitialized(1);
             h.human2Method();
+            h.human1.setInitialized(1);
             System.out.println("Attack either the one in front - 1");
             System.out.println("Or attack the one in the back - 2");
             combatMethod();
@@ -78,11 +79,6 @@ public class Game extends Main {
                     combatMethod();}
         } else if (level.getFirstchoiceinlevel()==3) {
             if (Calculation.calculateOneInThousand()==1) {
-                player.setHealth(player.getHealth()-2);
-                System.out.println("You have lost 2 health while subduing the enemy!");
-                System.out.println("you have gained their weapons and coins!");
-                player.setWeapon(2);
-                player.setCoins(4);
                 firstCombatWon=true;
             }
         }
@@ -166,13 +162,12 @@ public class Game extends Main {
            if (!h.human1.opponentAlive() && !h.human2.opponentAlive()) {
                System.out.println("You have Killed both Enemies");
                firstCombatWon = true;
-               combatInProgress=false;
-               break;   }
+               combatInProgress=false;   }
 
-           playerAttack();
+           firstCombatMethod();
        }
    }
-      public void playerAttack() {
+      public void firstCombatMethod() {
          attackChoice=input.nextInt();
           if (attackChoice==1) {
               if (!h.human1.opponentAlive()) {
@@ -198,14 +193,9 @@ public class Game extends Main {
               h.human2.setHp(currentHP-playerDamageDealt);
               System.out.println("2 health :" + h.human2.getHp());
                 mobAttackBack1();          }
-
           if (h.human1.opponentKilled() && h.human2.opponentKilled()) {
-              firstCombatWon=true;
-          }
-       }
-       public void combatFillOut() {
+              firstCombatWon=true;          }                                       }
 
-       }
 
        public void mobAttackBack1() {
         for (int i=0; i<1;i++) {

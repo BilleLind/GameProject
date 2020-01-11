@@ -32,7 +32,7 @@ public class Player {
     }
 
     public int getAttack() {
-        return attack;
+        return attack+getWeapon();
     }
 
     public int getDefence() {
