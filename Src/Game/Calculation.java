@@ -11,7 +11,7 @@ public class Calculation extends Player {
     }
     public static int generateRandomInt(int attack) {
         Random random = new Random();
-        return random.nextInt(attack);
+        return random.nextInt(attack)+1;
     }
 
    // by using these i can make sure that the odds are more easy to manage in the beginning later on i could add

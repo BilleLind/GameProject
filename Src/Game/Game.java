@@ -9,7 +9,8 @@ public class Game extends Main {
     String attack = "attack", wound = "wound", subdue = "subdue", winOver = "winOver", flee = "flee", talk = "talk", cheat = "cheat";
     Humans h = new Humans();
     Player player = new Player();
-
+    boolean firstCombatWon =false;
+    int playerDamageDealt, adversariesDamageDealt;
 
     public void gameRunning() {
 
@@ -135,17 +136,74 @@ public class Game extends Main {
 
    public void combatMethod() {
 
-
-      while (player.isAlive() ||h.human1.opponentAlive() && h.human2.opponentAlive()) // how to do this with different opponents?
+       boolean combatInProgress = true;
+       while (combatInProgress) // how to do this with different opponents?
        {
            System.out.println("yeaah");
+           if (player.isAlive()) {
+               System.out.println(player.getName() + " Is alive");  // displayed in the top
+               System.out.println(player.getHealth() + " Health left");
+           } else if (!player.isAlive()) {
+               System.out.println("you have been defeated");
+               break;
+           }
+           if (h.human1.opponentAlive()) {
+               System.out.println(h.human1.getName() + " Is alive"); // displayed left middle or right side
+               System.out.println(h.human1.getHp() + " Health left");
+           } // perhaps a picture? over the text/values
+           else if (!h.human1.opponentAlive()) {
+               System.out.println(h.human1.getName() + " Have been defeated");
+           }
+           if (h.human2.opponentAlive()) {
+               System.out.println(h.human2.getName() + " Is alive");
+               System.out.println(h.human2.getHp() + " Health left");
+           } else if (h.human2.opponentAlive()) {
+               System.out.println(h.human2.getName() + " Have been defeated");
+           }
+           if (!h.human1.opponentAlive() && !h.human2.opponentAlive()) {
+               System.out.println("You have Killed both Enemies");
+               firstCombatWon = true;
+               combatInProgress=false;
+               break;   }
 
-        }
+           playerAttack();
+       }
+   }
+      public void playerAttack() {
+          int attackChoice=input.nextInt();
+          System.out.println("Attack bandit1: 1");
+          System.out.println("Attack bandit2: 2");
+          if (attackChoice==1) {
+              if (!h.human1.opponentAlive()) {
+                  System.out.println("Bandit1 is dead your dimwit");
+                  attackChoice=2;
+              }
+              System.out.println("you are attacking" + h.human1.getName());
+              playerDamageDealt=Calculation.generateRandomInt(player.getAttack());
+              System.out.println(" damage dealt:" +playerDamageDealt);
+              int currentHP =h.human1.getHp();
+              h.human1.setHp(currentHP-playerDamageDealt);
+              System.out.println("1 health :" +h.human1.getHp());
+          }else if (attackChoice==2) {
+              if (!h.human2.opponentAlive()) {
+                  System.out.println("Bandit2 is dead your dimwit");
+                  attackChoice=1;
+              }
+              System.out.println("you are attacking" + h.human2.getName());
+              playerDamageDealt=Calculation.generateRandomInt(player.getAttack());
+              System.out.println(" damage dealt:" +playerDamageDealt);
+              int currentHP =h.human2.getHp();
+              h.human2.setHp(currentHP-playerDamageDealt);
+              System.out.println("2 health :" + h.human2.getHp());
+          }
+       }
+
+
       //else if (!player.isAlive()) {
           //System.out.println("more yeaah");
       //}
 
-   }
+
 
 }
 
