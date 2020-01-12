@@ -8,7 +8,7 @@ public class Game extends Main {
     String attack = "attack", wound = "wound", subdue = "subdue", winOver = "winOver", flee = "flee", talk = "talk", cheat = "cheat";
     Humans h = new Humans();
     Player player = new Player();
-    boolean firstCombatWon =false, firstCombatFleet=false; // will be used for a victory sheet of sort
+    boolean firstCombatWon =false, firstCombatFleet=false, firstCombatSubdued=false; // will be used for a victory sheet of sort
     int playerDamageDealt, adversariesDamageDealt;
     int attackChoice;
 
@@ -79,11 +79,14 @@ public class Game extends Main {
                     combatMethod();}
         } else if (level.getFirstchoiceinlevel()==3) {
             if (Calculation.calculateOneInThousand()==1) {
-                firstCombatWon=true;
-            }
-        }
+                firstCombatSubdued=true;   }          }
 
-
+        if (firstCombatSubdued) {
+            level.firstBackStorySubdued();
+        } else if (firstCombatWon) {
+            level.firstBackStoryKilling();
+        }else if (firstCombatFleet) {
+            level.firstBackStoryFleeing();        }
 
 
     }
@@ -178,7 +181,7 @@ public class Game extends Main {
               playerDamageDealt=Calculation.generateRandomInt(player.getAttack());
               System.out.println(" damage dealt:" +playerDamageDealt);
               int currentHP =h.human1.getHp();
-              h.human1.setHp(currentHP-playerDamageDealt);
+              h.human1.setHp(currentHP-playerDamageDealt+h.human1.getHp());
               System.out.println("1 health :" +h.human1.getHp());
                 mobAttackBack1();
           }else if (attackChoice==2) {
@@ -190,7 +193,7 @@ public class Game extends Main {
               playerDamageDealt=Calculation.generateRandomInt(player.getAttack());
               System.out.println(" damage dealt:" +playerDamageDealt);
               int currentHP =h.human2.getHp();
-              h.human2.setHp(currentHP-playerDamageDealt);
+              h.human2.setHp(currentHP-playerDamageDealt+h.human2.getHp());
               System.out.println("2 health :" + h.human2.getHp());
                 mobAttackBack1();          }
           if (h.human1.opponentKilled() && h.human2.opponentKilled()) {
@@ -205,7 +208,7 @@ public class Game extends Main {
                player.setHealth(playerCurrentHP-adversariesDamageDealt); }
            if (h.human2.opponentAlive() && h.human2.opponentInitialized()) {
                adversariesDamageDealt = Calculation.generateRandomInt(h.human2.getAtk());
-               player.setHealth(player.getHealth()-adversariesDamageDealt); }
+               player.setHealth(player.getHealth()-adversariesDamageDealt+player.getDefence()); }
                 } }
       public void mobAttackBack2() {
         for (int i=0; i<1;i++) {
@@ -215,7 +218,7 @@ public class Game extends Main {
                 player.setHealth(playerCurrentHP-adversariesDamageDealt); }
             if (h.human4.opponentAlive() && h.human4.opponentInitialized()) {
                 adversariesDamageDealt = Calculation.generateRandomInt(h.human4.getAtk());
-                player.setHealth(player.getHealth()-adversariesDamageDealt); }
+                player.setHealth(player.getHealth()-adversariesDamageDealt+player.getDefence()); }
                 } }
     public void mobAttackBack3() {
         for (int i=0; i<1;i++) {
