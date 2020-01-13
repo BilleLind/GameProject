@@ -6,7 +6,7 @@ public class Creature {
     //super class for all the different adversaries that the player will be fighting or encountering
 
     public int health;
-    public int attack;
+    public int attack=1;
     public int defence;
     public String name;
     boolean inUse = false;

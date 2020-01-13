@@ -9,14 +9,17 @@ public class Main {
 
 
       Game g = new Game();
+      //maybe make the set method in main, or make it like
+        // Creature creature, Creature creature2, Creature player ?? could work. then it should only need
+        // to be set up and initialized like Humans??
       g.player.setHealth(20);
-      g.player.setAttack(4);
+      g.player.setAttack(5);
       g.player.setName("Kvothe");
       g.player.setCoins(2);
       g.player.setWeapon(0);
       g.player.setBornWithTalent(3);
       g.player.setEquipment(0);
-      g.player.setDefence(3);
+      g.player.setDefence(1);
 
       if (g.player.isAlive()) {
           System.out.println("Whaat");
