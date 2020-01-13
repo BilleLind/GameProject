@@ -9,7 +9,26 @@ public class Main {
 
 
       Game g = new Game();
+      g.player.setHealth(20);
+      g.player.setAttack(4);
+      g.player.setName("Kvothe");
+      g.player.setCoins(2);
+      g.player.setWeapon(0);
+      g.player.setBornWithTalent(3);
+      g.player.setEquipment(0);
+      g.player.setDefence(3);
+
+      if (g.player.isAlive()) {
+          System.out.println("Whaat");
+      } else if (!g.player.isAlive()) {
+          System.out.println("EHH?");
+      }else System.out.println("THE FUCK");
       g.gameRunning();
+
+
+
+
+
 
         /*int tally=0;
         for (int i =0; i<1000; i++) {

@@ -23,8 +23,9 @@ public class Game extends Main {
             // that would delete the requirement for the choice between 1 2 or 3.... and just ask for the name at the start or 1, 2, 3 and 4 are premade and the fifth are the one you
             //can customize to your desire
 
-            Player player = new Player(20, "Kvothe", 4, 2, 0, 0,3,2);
-
+            //Player player = new Player(20, "Kvothe", 4, 2, 0, 0,3,2);
+            //player.setAttack(4);
+            //player.setHealth(20);
             System.out.println("You have chosen character: " + yourChoice);
             System.out.println("Your characters name is: " + player.getName());  // to be displayed at the top of the program
             System.out.println("Your character have: " + player.getHealth() + " Health");
@@ -52,8 +53,8 @@ public class Game extends Main {
         level.preStoryKvothe();
 
 
-        Humans human = new Humans(4,3,0,"bandit");
-        Humans human2 = new Humans(3,4,1,"Bandit 2");
+        Humans human = new Humans(4,3,0,"bandit", true);
+        Humans human2 = new Humans(3,4,1,"Bandit 2", true);
         System.out.println("");
         level.firstChoicesStory();
         level.firstChoices();
@@ -134,31 +135,32 @@ public class Game extends Main {
     public void combat(Creature creature, Creature creature2) {
         System.out.println("You have Encountered: " );
         System.out.println(creature.getName() + " With: " + creature.getHealth() + " Health");
-        if (creature2.getInUse()) {
+        if (!creature2.getInUse()) {
             System.out.println(creature2.getName() + " With: " + creature2.getHealth() + " Health"); }
         boolean combatInProgress=true;
         while (combatInProgress) {
             System.out.println(player.getHealth() + "HP in COMBAT");
-            if (player.isAlive()) {
-                System.out.println(player.getName() + " is alive");
-                System.out.println(player.getHealth() + " Health left");
-            } else if (!player.isAlive()) {
-                System.out.println("You have been defeated!");
-                combatInProgress=false; }
+           // if (!player.isAlive()) {
+            //    System.out.println(player.getName() + " is alive");
+             //   System.out.println(player.getHealth() + " Health left");
+           // } else if (player.isAlive()) {
+           //     System.out.println("You have been defeated!");
+            //    combatInProgress=false; }
+            // something wrong about the isAlive() :/
+
             if (creature.opponentAlive()) {
-                System.out.println(creature.getName() + " is alive");
-                System.out.println(creature.getHealth() + " Health left");
+                System.out.println(creature.getName() + " is alive | " + creature.getHealth() + " Health left");
             } else if (!creature.opponentAlive()) {
                 System.out.println(creature.getName() + " Have been defeated");
             }
-            if (creature2.opponentAlive() && creature2.getInUse()) {
-                System.out.println(creature2.getName() + " is alive");
-                System.out.println(creature2.getHealth() + " Health left");
+            if (creature2.opponentAlive() && !creature2.getInUse()) {
+                System.out.println(creature2.getName() + " is alive | " + creature2.getHealth() + " Health left");
+
             } else if (!creature2.opponentAlive() && creature2.getInUse()) {
                 System.out.println(creature2.getName() + " Have been defeated");
             }
 
-            if (creature2.getInUse()) {
+            if (!creature2.getInUse()) {
                 System.out.println("Choose which opponent you would attack!\n" +
                         "Front/right = 1, Behind/left = 2");
                 attackChoice = input.nextInt();
@@ -172,30 +174,35 @@ public class Game extends Main {
                     System.out.println(creature.getName() + " is dead DimWit!!");
                     attackChoice = 2;
                 }
-                System.out.println("You are attacking" + creature.getName());
+                System.out.println("You are attacking: " + creature.getName());
                 int playerDamage = Calculation.generateRandomInt(player.getAttack());
-                System.out.println("Damage dealt: " + playerDamage);
+                System.out.println("Damage dealt: " + playerDamage + " to " +creature.getName());
                 creature.setHealth(creature.getHealth() - playerDamage + creature.getDefence());
                 System.out.println(creature.getHealth() + " Add1 - health");
                 if (creature.opponentAlive()) {
                     int addDamage = Calculation.generateRandomInt(creature.getAttack());
                     System.out.println(creature.getName() + " Dealt you " + addDamage + " Damage");
                     player.setHealth(player.getHealth() - addDamage + player.getDefence());
+                    System.out.println(player.getHealth() + " Player health left");
                 }
             } else if (attackChoice == 2) {
                 if (!creature2.opponentAlive()) {
                     attackChoice = 1;
                 }
-                System.out.println("You are attacking" + creature2.getName());
-                int playerDamage = Calculation.generateRandomInt(player.getAttack());
-                System.out.println("Damage dealt: " + playerDamage);
-                creature.setHealth(creature2.getHealth() - playerDamage + creature2.getDefence());
+                System.out.println("You are attacking: " + creature2.getName());
+                int playerDamage2 = Calculation.generateRandomInt(player.getAttack());
+                System.out.println("Damage dealt: " + playerDamage2 + " to " + creature2.getName());
+                creature.setHealth(creature2.getHealth() - playerDamage2 + creature2.getDefence());
                 System.out.println(creature2.getHealth() + " Add2 - health");
                 if (creature2.opponentAlive()) {
                     int addDamage2 = Calculation.generateRandomInt(creature2.getAttack());
                     System.out.println(creature2.getName() + " Dealt you " + addDamage2 + " Damage");
                     player.setHealth(player.getHealth() - addDamage2 + player.getDefence());
+                    System.out.println(player.getHealth() + " Player health left");
                 }
+            }
+            if (!creature.opponentAlive() && !creature2.opponentAlive() || !creature2.getInUse()) {
+                combatInProgress=false;
             }
         }
 

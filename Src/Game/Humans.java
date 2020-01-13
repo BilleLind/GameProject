@@ -2,11 +2,12 @@ package Game;
 
 public class Humans extends Creature {
     public boolean inUse =false;
-    public Humans(int hp, int atk, int def, String name) {
+    public Humans(int hp, int atk, int def, String name, boolean inUse) {
         this.setHealth(hp);
         this.setAttack(atk);
         this.setDefence(def);
         this.setName(name);
+        this.inUse = inUse;
       }
 
     @Override
