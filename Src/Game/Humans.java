@@ -1,17 +1,25 @@
 package Game;
 
-public class Humans extends  Adversaries {
+public class Humans extends Adversaries {
+    public Humans(int hp, int atk, int def, String name) {
+        super(hp, atk, def, name);
+    }
 
-    Adversaries human1 = new Adversaries();
-    Adversaries human2 = new Adversaries();
-    Adversaries human3 = new Adversaries();
-    Adversaries human4 = new Adversaries();
-    Adversaries human5 = new Adversaries();
-    Adversaries human6 = new Adversaries();
-    Adversaries human7 = new Adversaries();
-    Adversaries human8 = new Adversaries();
+    //Adversaries human1 = new Adversaries();
+    //Adversaries human2 = new Adversaries();
+    //Adversaries human3 = new Adversaries();
+    //Adversaries human4 = new Adversaries();
+    //Adversaries human5 = new Adversaries();
+    //Adversaries human6 = new Adversaries();
+    //Adversaries human7 = new Adversaries();
+    // Adversaries human8 = new Adversaries();
+   // Adversaries humanT1 = new Adversaries();
 
-    public void human1Method() { // 1 + 2 is first encounters
+
+
+
+
+    /*public void human1Method() { // 1 + 2 is first encounters
         human1.setAtk(3);
         human1.setDef(1);
         human1.setHp(5);
@@ -74,6 +82,8 @@ public class Humans extends  Adversaries {
         human8.setName("Bandit 8");
         human8.setKilled(1);
         human8.setInitialized(0);
-    }
+    } */
+
+
 
 }

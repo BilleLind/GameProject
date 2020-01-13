@@ -24,13 +24,12 @@ public class Game extends Main {
             // that would delete the requirement for the choice between 1 2 or 3.... and just ask for the name at the start or 1, 2, 3 and 4 are premade and the fifth are the one you
             //can customize to your desire
 
-
             player.setName("Kvothe");
             player.setHealth(20);
             player.setBornWithTalent(3);
             player.setWeapon(0);
             player.setEquipment(0);
-            player.setAttack(3);
+            player.setAttack(4);
             player.setDefence(2);
             System.out.println("You have chosen character: " + yourChoice);
             System.out.println("Your characters name is: " + player.getName());  // to be displayed at the top of the program
@@ -40,7 +39,7 @@ public class Game extends Main {
         } else if (yourChoice==2) {
             player.setName("Reshi");
             player.setHealth(18);
-            player.setDefence(4);
+            player.setDefence(5);
             player.setAttack(4);
             player.setEquipment(0);
             player.setWeapon(0);
@@ -51,7 +50,7 @@ public class Game extends Main {
         }else{
             System.out.println("Error - please choose 1");
             yourChoice = input.nextInt();
-        }
+        } // a catch method if entered wrong
 
 
         //TODO START OF "PROGRAM" perhaps not a loop as it goes back instead and reads the story
@@ -63,10 +62,7 @@ public class Game extends Main {
 
         if (level.getFirstchoiceinlevel()==1) {
             System.out.println("success");
-            h.human1Method();
-            h.human1.setInitialized(1);
-            h.human2Method();
-            h.human1.setInitialized(1);
+
             System.out.println("Attack either the one in front - 1");
             System.out.println("Or attack the one in the back - 2");
             combatMethod();
@@ -83,9 +79,9 @@ public class Game extends Main {
 
         if (firstCombatSubdued) {
             level.firstBackStorySubdued();
-        } else if (firstCombatWon) {
-            level.firstBackStoryKilling();
-        }else if (firstCombatFleet) {
+        }
+        else if (firstCombatWon) {level.firstBackStoryKilling();}
+        else if (firstCombatFleet) {
             level.firstBackStoryFleeing();        }
 
 
@@ -181,9 +177,11 @@ public class Game extends Main {
               playerDamageDealt=Calculation.generateRandomInt(player.getAttack());
               System.out.println(" damage dealt:" +playerDamageDealt);
               int currentHP =h.human1.getHp();
-              h.human1.setHp(currentHP-playerDamageDealt+h.human1.getHp());
+              h.human1.setHp(currentHP-playerDamageDealt+h.human1.getDef());
               System.out.println("1 health :" +h.human1.getHp());
                 mobAttackBack1();
+
+
           }else if (attackChoice==2) {
               if (!h.human2.opponentAlive()) {
                   System.out.println(h.human2.getName()+" is dead your dimwit");
@@ -193,13 +191,13 @@ public class Game extends Main {
               playerDamageDealt=Calculation.generateRandomInt(player.getAttack());
               System.out.println(" damage dealt:" +playerDamageDealt);
               int currentHP =h.human2.getHp();
-              h.human2.setHp(currentHP-playerDamageDealt+h.human2.getHp());
+              h.human2.setHp(currentHP-playerDamageDealt+h.human2.getDef());
               System.out.println("2 health :" + h.human2.getHp());
                 mobAttackBack1();          }
           if (h.human1.opponentKilled() && h.human2.opponentKilled()) {
               firstCombatWon=true;          }                                       }
 
-
+/*
        public void mobAttackBack1() {
         for (int i=0; i<1;i++) {
            if (h.human1.opponentAlive() && h.human1.opponentInitialized()) {
@@ -225,16 +223,14 @@ public class Game extends Main {
             if (h.human5.opponentAlive() && h.human5.opponentInitialized()) {
                 adversariesDamageDealt = Calculation.generateRandomInt(h.human5.getAtk());
                 int playerCurrentHP =player.getHealth();
-                player.setHealth(playerCurrentHP-adversariesDamageDealt); }
+                player.setHealth(playerCurrentHP-adversariesDamageDealt+player.getDefence()); }
             if (h.human6.opponentAlive() && h.human6.opponentInitialized()) {
                 adversariesDamageDealt = Calculation.generateRandomInt(h.human6.getAtk());
-                player.setHealth(player.getHealth()-adversariesDamageDealt); }
+                player.setHealth(player.getHealth()-adversariesDamageDealt+player.getDefence()); }
         } }
+*/
 
 
-      //else if (!player.isAlive()) {
-          //System.out.println("more yeaah");
-      //}
 
 
 

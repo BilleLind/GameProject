@@ -36,7 +36,7 @@ public class Levels {
 
         public int getFirstchoiceinlevel() {
                 return firstchoiceinlevel;
-        }
+        } //change to choiceInLevel to be resusable, would reset it everytime because set and get
 
         public void setFirstchoiceinlevel(int firstchoiceinlevel) {
                 this.firstchoiceinlevel = firstchoiceinlevel;
@@ -92,9 +92,14 @@ public class Levels {
                 player.setAttack(player.getAttack()-1);
                 player.setHealth(17);
                 System.out.println("while fleeing to the woods you get scratched and wounded");
-                System.out.println("you wound you right hand and lost a bit of health");
+                System.out.println("you wound you right hand and lost a bit of health"); }
 
-        }
+        public void secondChoiceStory() {
+                System.out.println("After Resting a while i decide to head on toward the town\n " +
+                        "while walking you are confronted by 2 strangers" +
+                        "they seem angry and ask you how you have come through this way" +
+                        "you tell them what happened and they charge you"); }
+
 
 }
 
