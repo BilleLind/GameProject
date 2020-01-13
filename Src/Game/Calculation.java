@@ -7,7 +7,7 @@ public class Calculation extends Player {
 
     public static double generateRandomDouble() {
         Random random = new Random();
-        return random.nextDouble()*1;
+        return random.nextDouble();
     }
     public static int generateRandomInt(int attack) {
         Random random = new Random();

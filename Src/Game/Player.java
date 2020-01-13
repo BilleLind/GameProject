@@ -2,18 +2,34 @@ package Game;
 
 import java.util.Random;
 
-public class Player {
+public class Player extends Creature {
     // the class where all instance variables and methods for the player class will be located here
     //included all the different starter bonuses
 
     private int health;
     private String name;
-    private int attack;
+    private int attack=1;
     private int defence;
     private int weapon;
     private int equipment;
     private int bornWithTalent;
     private int coins;
+
+    public Player(int health, String name, int attack, int defence, int weapon, int equipment, int bornWithTalent, int coins) {
+        this.health = health;
+        this.name = name;
+        this.attack = attack;
+        this.defence = defence;
+        this.weapon = weapon;
+        this.equipment = equipment;
+        this.bornWithTalent = bornWithTalent;
+        this.coins= coins;
+    }
+    public Player() {
+
+    }
+
+
 
     public int getHealth() {
         return health;
