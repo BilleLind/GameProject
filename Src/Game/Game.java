@@ -5,10 +5,10 @@ import java.util.Scanner;
 public class Game extends Main {
     Scanner input = new Scanner(System.in);
     String choice;
-    String attack = "attack", wound = "wound", subdue = "subdue", winOver = "winOver", flee = "flee", talk = "talk", cheat = "cheat";
     Player player = new Player();
-
     boolean firstCombatWon =false, firstCombatFleet=false, firstCombatSubdued=false; // will be used for a victory sheet of sort
+
+
     int attackChoice;
 
     public void gameRunning() {
@@ -17,7 +17,7 @@ public class Game extends Main {
         System.out.println("Hello this is the menu for this game");
         System.out.println("************************************");
         System.out.println(" ");
-        System.out.println("Please select Your character (only 1)");
+        System.out.println("Please select Your character (1 or 2)");
         int yourChoice = input.nextInt();
         if (yourChoice == 1) {
             // that would delete the requirement for the choice between 1 2 or 3.... and just ask for the name at the start or 1, 2, 3 and 4 are premade and the fifth are the one you
@@ -66,63 +66,37 @@ public class Game extends Main {
         } else if (level.getFirstchoiceinlevel()==3) { //subdue option (aka op lucky option)
             if (Calculation.calculateOneInThousand()==1) {
                 firstCombatSubdued=true;   } else {combat(human, human2); firstCombatWon=true;} }
-        if (firstCombatSubdued) {
-            level.firstBackStorySubdued();
-        }
-        else if (firstCombatWon) {level.firstBackStoryKilling();}
-        else if (firstCombatFleet) {
-            level.firstBackStoryFleeing();        }
+
+        if (firstCombatSubdued) {player.setCoins(10); player.setWeapon(3); player.setHealth(25);
+            level.firstBackStorySubdued();}
+
+        else if (firstCombatWon) {player.setWeapon(2); player.setHealth(24); player.setCoins(4);
+            level.firstBackStoryKilling();     }
+
+        else if (firstCombatFleet) {player.setAttack(player.getAttack()-1); player.setHealth(17);
+            level.firstBackStoryFleeing();}
             // end of the first story piece + combat/flee or subdue option
 
+        System.out.println("Test");
+
+        System.out.println(player.getHealth());
+        System.out.println(player.getWeapon());
+        System.out.println(player.getCoins());
             // TODO Second story - second battle
             level.secondChoiceStory();
+            Humans humans2a = new Humans(6,4,1, " bandit's friend ", true);
+            Humans humans2b = new Humans(8,5,2," Bandit's wife", true);
+            combat(humans2a, humans2b);
+            player.setHealth(24);
+            player.setCoins(player.getCoins()+2);
+        System.out.println(player.getCoins() + " coins!");
+        System.out.println(player.getHealth() + " test after health reset");
+            player.setEquipment(2);
+        System.out.println(player.getEquipment() + " EQ" + player.getHealth() + " hP with EQ");
+            level.secondBackStory();
 
 
-    }
 
-    public void choices() {   // the choice method -
-        System.out.println("Please choose a Action");
-        System.out.println();
-        choice = input.next();
-        switch (choice) {
-            case "attack":
-                System.out.println("attack");
-             //   setFirstchoiceinlevel(1);
-
-                break;
-            case "wound":
-                System.out.println("wound");
-                //setFirstchoiceinlevel(2);
-
-                break;
-            case "subdue":
-                System.out.println("subdue");
-               // level.setFirstchoiceinlevel(3);
-
-                break;
-            case "winOver":
-                System.out.println("winOver");
-              //  level.setFirstchoiceinlevel(4);
-
-                break;
-            case "flee":
-               /// level.setFirstchoiceinlevel(5);
-
-                System.out.println("flee");
-
-                break;
-            case "talk":
-                System.out.println("talk");
-              //  level.setFirstchoiceinlevel(6);
-                break;
-            case "cheat":
-                System.out.println("cheat");
-             //   level.setFirstchoiceinlevel(10);
-                break;
-            default:
-                System.out.println("failure");
-                break;
-        }
     }
 
 
@@ -133,7 +107,7 @@ public class Game extends Main {
             System.out.println(creature2.getName() + " With: " + creature2.getHealth() + " Health"); }
         boolean combatInProgress=true;
         while (combatInProgress) {
-            System.out.println(player.getHealth() + "HP in COMBAT");
+            //System.out.println(player.getHealth() + "HP in COMBAT");
            // if (!player.isAlive()) {
             //    System.out.println(player.getName() + " is alive");
              //   System.out.println(player.getHealth() + " Health left");
@@ -173,30 +147,30 @@ public class Game extends Main {
 
                 if (creature.getDefence() > playerDamage) {
                      // it would heal the mob, there by making it regenerate
-                    System.out.println("Your attack was to WEAK!");
-                    creature.setHealth(creature.getHealth() );
+                    System.out.println("Your attack was WEAK!");
+                    creature.setHealth(creature.getHealth() -1);
                 } else {System.out.println("Damage dealt: " + playerDamage + " to " +creature.getName());
                     creature.setHealth(creature.getHealth() - playerDamage + creature.getDefence());}
-                System.out.println(creature.getHealth() + " Add1 - health");
+                //TODO System.out.println(creature.getHealth() + " Add1 - health"); removable??
                 if (creature.opponentAlive()) {
                     int addDamage = Calculation.generateRandomInt(creature.getAttack());
 
                     if ( player.getDefence() > addDamage) {
                          // it would heal the mob, there by making it regenerate
-                        System.out.println(creature.name + " Attack was to WEAK!");
-                        player.setHealth(player.getHealth());
+                        System.out.println(creature.name + " Attack was WEAK!");
+                        player.setHealth(player.getHealth()-1);
                     } else {System.out.println(creature.getName() + " Dealt you " + addDamage + " Damage");
-                        player.setHealth(player.getHealth() - addDamage + player.getDefence());}
-                    System.out.println(player.getHealth() + " Player health left");
+                        player.setHealth(player.getHealth() - addDamage + player.getDefence());
+                    System.out.println(player.getHealth() + " Player health left"); }
                 } if (creature2.opponentAlive()) {
                     int addDamage2 = Calculation.generateRandomInt(creature2.getAttack());
 
                     if (player.getDefence() > addDamage2) {
-                        System.out.println(creature2.getName() + " Attack was to WEAK!");
-                        player.setHealth(player.getHealth()); // it would heal the mob, there by making it regenerate
+                        System.out.println(creature2.getName() + " Attack was WEAK!");
+                        player.setHealth(player.getHealth()-1); // it would heal the mob, there by making it regenerate
                     }else {System.out.println(creature2.getName() + " Dealt you " + addDamage2 + " Damage");
-                        player.setHealth(player.getHealth() - addDamage2 + player.getDefence());}
-                    System.out.println(player.getHealth() + " Player health left");
+                        player.setHealth(player.getHealth() - addDamage2 + player.getDefence());
+                    System.out.println(player.getHealth() + " Player health left");}
                 }
             } else if (attackChoice == 2) {
                 if (!creature2.opponentAlive()) {
@@ -206,31 +180,31 @@ public class Game extends Main {
                 int playerDamage = Calculation.generateRandomInt(player.getAttack());
 
                 if (creature2.getDefence() > playerDamage) {
-                    System.out.println("Your attack was to WEAK!");
+                    System.out.println("Your attack was WEAK!");
                     // it would heal the mob, there by making it regenerate
-                    creature2.setHealth(creature2.getHealth() ); }
-                else {System.out.println("Damage dealt: " + playerDamage + " to " +creature2.getName());
-                    creature2.setHealth(creature2.getHealth()-playerDamage+creature2.getDefence());}
+                    creature2.setHealth(creature2.getHealth()-1);
+                } else {System.out.println("Damage dealt: " + playerDamage + " to " +creature2.getName());
+                    creature2.setHealth(creature2.getHealth()-playerDamage+creature2.getDefence()); }
 
                 if (creature2.opponentAlive()) {
                     int addDamage2 = Calculation.generateRandomInt(creature2.getAttack());
 
                     if (player.getDefence() > addDamage2) {
-                        System.out.println(creature2.getName() + " Attack was to WEAK!");
-                        player.setHealth(player.getHealth()-addDamage2); // it would heal the mob, there by making it regenerate
+                        System.out.println(creature2.getName() + "  Attack was WEAK!");
+                        player.setHealth(player.getHealth()-1); // it would heal the mob, there by making it regenerate
                     }else {System.out.println(creature2.getName() + " Dealt you " + addDamage2 + " Damage");
-                        player.setHealth(player.getHealth() - addDamage2 + player.getDefence());}
-                    System.out.println(player.getHealth() + " Player health left");
+                        player.setHealth(player.getHealth() - addDamage2 + player.getDefence());
+                    System.out.println(player.getHealth() + " Player health left");}
                 }if (creature.opponentAlive()) {
                     int addDamage = Calculation.generateRandomInt(creature.getAttack());
 
                     if ( player.getDefence() > addDamage) {
                         // it would heal the mob, there by making it regenerate
-                        System.out.println(creature.getName() + " Attack was to WEAK!");
-                        player.setHealth(player.getHealth() - addDamage);
+                        System.out.println(creature.getName() + " Attack was WEAK!");
+                        player.setHealth(player.getHealth() -1);
                     } else {System.out.println(creature.getName() + " Dealt you " + addDamage + " Damage");
-                        player.setHealth(player.getHealth() - addDamage + player.getDefence());}
-                    System.out.println(player.getHealth() + " Player health left");
+                        player.setHealth(player.getHealth() - addDamage + player.getDefence());
+                    System.out.println(player.getHealth() + " Player health left");}
                 }
             }
             if (!creature.opponentAlive() && !creature2.opponentAlive() || creature2.getInUse()) {

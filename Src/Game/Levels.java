@@ -10,7 +10,7 @@ public class Levels {
         private int numberOfAdversaries; //the mininum number of needed to encounter - maybe a "bonus boss"
         private int difficulty; // 1 easy, 2 little harder 3 medium and so on
         Player player = new Player();
-
+        int coins, health, weapon, equipment, attack,defence;
 
         final double chanceOfBossEncounter = 0.05; // 5%, times levelNumber so chances will be higher further one
 
@@ -76,29 +76,27 @@ public class Levels {
         }
         public void firstBackStoryKilling() {
                 // the text after killing them
-                player.setCoins(4);
-                player.setHealth(24);
-                player.setWeapon(2);
-                System.out.println("After killing the bandits you find a decent weapon and " + player.getCoins() + "coins!");
+               //unable to set the values of player in here, it won't change it while using it later
+                System.out.println("After killing the bandits you find a decent weapon and " + player.getCoins() + " coins!");
                 System.out.println("You find some meat and decide to rest up");    }
         public void firstBackStorySubdued() {
-                player.setCoins(10);
-                player.setWeapon(3);
-                player.setHealth(25);
                 System.out.println("After subduing the enemy, you steal a fine sword from them");
                 System.out.println("They give you their hidden coins for letting them live");
-                System.out.println("Optained " +player.getCoins() + " Coins!"); }
+                System.out.println("Obtained " +player.getCoins() + " Coins!"); }
         public void firstBackStoryFleeing() {
-                player.setAttack(player.getAttack()-1);
-                player.setHealth(17);
                 System.out.println("while fleeing to the woods you get scratched and wounded");
                 System.out.println("you wound you right hand and lost a bit of health"); }
+
 
         public void secondChoiceStory() {
                 System.out.println("After Resting a while i decide to head on toward the town\n " +
                         "while walking you are confronted by 2 strangers" +
                         "they seem angry and ask you how you have come through this way" +
                         "you tell them what happened and they charge you"); }
+        public void secondBackStory() {
+                System.out.println("Weary after fighting 2 sets of enemies in one day\n" +
+                        "you decide to find shelter in a nearby cave");
+        }
 
 
 }

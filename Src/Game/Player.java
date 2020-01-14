@@ -1,6 +1,6 @@
 package Game;
 
-import java.util.Random;
+import java.util.ArrayList;
 
 public class Player extends Creature {
     // the class where all instance variables and methods for the player class will be located here
@@ -14,6 +14,7 @@ public class Player extends Creature {
     private int equipment;
     private int bornWithTalent;
     private int coins;
+
 
     public Player(int health, String name, int attack, int defence, int weapon, int equipment, int bornWithTalent, int coins) {
         this.health = health;
@@ -30,9 +31,8 @@ public class Player extends Creature {
     }
 
 
-
     public int getHealth() {
-        return health;
+        return health+equipment;
     }
 
     public String getName() {
