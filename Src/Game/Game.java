@@ -195,7 +195,7 @@ public class Game extends Main {
                     }else {System.out.println(creature2.getName() + " Dealt you " + addDamage2 + " Damage");
                         player.setHealth(player.getHealth() - addDamage2 + player.getDefence());
                     System.out.println(player.getHealth() + " Player health left");}
-                }if (creature.opponentAlive()) {
+                } if (creature.opponentAlive()) {
                     int addDamage = Calculation.generateRandomInt(creature.getAttack());
 
                     if ( player.getDefence() > addDamage) {

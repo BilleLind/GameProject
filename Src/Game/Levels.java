@@ -97,6 +97,10 @@ public class Levels {
                 System.out.println("Weary after fighting 2 sets of enemies in one day\n" +
                         "you decide to find shelter in a nearby cave");
         }
+        public void thirdChoiceStory() {
+                System.out.println("After a well deserved rest, you head out of the cave and towards the road" +
+                        " ");
+        }
 
 
 }
