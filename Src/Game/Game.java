@@ -20,28 +20,9 @@ public class Game extends Main {
         System.out.println("Please select Your character (1 or 2)");
         int yourChoice = input.nextInt();
         if (yourChoice == 1) {
-            // that would delete the requirement for the choice between 1 2 or 3.... and just ask for the name at the start or 1, 2, 3 and 4 are premade and the fifth are the one you
-            //can customize to your desire
-
-            //Player player = new Player(20, "Kvothe", 4, 2, 0, 0,3,2);
-            //player.setAttack(4);
-            //player.setHealth(20);
-            System.out.println("You have chosen character: " + yourChoice);
-            System.out.println("Your characters name is: " + player.getName());  // to be displayed at the top of the program
-            System.out.println("Your character have: " + player.getHealth() + " Health");
-            System.out.println("Your character is generally skilled");
-
+            characterOne();
         } else if (yourChoice==2) {
-            player.setName("Reshi");
-            player.setHealth(18);
-            player.setDefence(5);
-            player.setAttack(4);
-            player.setEquipment(0);
-            player.setWeapon(0);
-            player.setBornWithTalent(4);
-            System.out.println("You have chosen character: " + yourChoice);
-            System.out.println("Your characters name is: " + player.getName());
-            System.out.println("Your character have: " + player.getHealth() + " Health");
+            characterTwo();
         }else{
             System.out.println("Error - please choose 1");
             yourChoice = input.nextInt();
@@ -213,6 +194,34 @@ public class Game extends Main {
         }
 
     }
+
+
+    public void characterOne() {
+        player.setHealth(20);
+        player.setAttack(5);
+        player.setName("Kvothe");
+        player.setCoins(2);
+        player.setWeapon(0);
+        player.setBornWithTalent(3);
+        player.setEquipment(0);
+        player.setDefence(1);
+        System.out.println("Your characters name is: " + player.getName());  // to be displayed at the top of the program
+        System.out.println("Your character have: " + player.getHealth() + " Health");
+        System.out.println("Your character is generally skilled");
+    }
+    public void characterTwo() {
+        player.setName("Reshi");
+        player.setHealth(18);
+        player.setDefence(2);
+        player.setAttack(4);
+        player.setEquipment(0);
+        player.setWeapon(0);
+        player.setBornWithTalent(4);
+        System.out.println("Your characters name is: " + player.getName());
+        System.out.println("Your character have: " + player.getHealth() + " Health");
+    }
+
+
 
 
 }
