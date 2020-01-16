@@ -99,7 +99,8 @@ public class Levels {
         }
         public void thirdChoiceStory() {
                 System.out.println("After a well deserved rest, you head out of the cave and towards the road" +
-                        " ");
+                        " you decide to head on toward the nearby town, thinking there are no more bandit's" +
+                        "");
         }
 
 
