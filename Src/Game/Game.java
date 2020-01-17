@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Game extends Main {
     Scanner input = new Scanner(System.in);
     String choice;
-    Player player = new Player();
+    static Player player = new Player();
     boolean firstCombatWon =false, firstCombatFleet=false, firstCombatSubdued=false; // will be used for a victory sheet of sort
 
 
