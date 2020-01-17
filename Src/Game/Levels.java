@@ -9,7 +9,6 @@ public class Levels {
         Game game = new Game();
         private int numberOfAdversaries; //the mininum number of needed to encounter - maybe a "bonus boss"
         private int difficulty; // 1 easy, 2 little harder 3 medium and so on
-        Player player = new Player();
         int coins, health, weapon, equipment, attack,defence;
 
         final double chanceOfBossEncounter = 0.05; // 5%, times levelNumber so chances will be higher further one
@@ -77,12 +76,12 @@ public class Levels {
         public void firstBackStoryKilling() {
                 // the text after killing them
                //unable to set the values of player in here, it won't change it while using it later
-                System.out.println("After killing the bandits you find a decent weapon and " + player.getCoins() + " coins!");
+                System.out.println("After killing the bandits you find a decent weapon and " + Game.player.getCoins() + " coins!");
                 System.out.println("You find some meat and decide to rest up");    }
         public void firstBackStorySubdued() {
                 System.out.println("After subduing the enemy, you steal a fine sword from them");
                 System.out.println("They give you their hidden coins for letting them live");
-                System.out.println("Obtained " +player.getCoins() + " Coins!"); }
+                System.out.println("Obtained " + Game.player.getCoins() + " Coins!"); }
         public void firstBackStoryFleeing() {
                 System.out.println("while fleeing to the woods you get scratched and wounded");
                 System.out.println("you wound you right hand and lost a bit of health"); }
@@ -105,7 +104,7 @@ public class Levels {
 
         public void fourthChoiceStory() {
                 System.out.println("you come across a town, you are stopped by 2 guards\n" +
-                        "they demand payment for entry, 4 coins out of your" + player.getCoins() +" coins\n" );
+                        "they demand payment for entry, 4 coins out of your" + Game.player.getCoins() +" coins\n" );
         }
         private  int fourthchoiceinlevel;
 
