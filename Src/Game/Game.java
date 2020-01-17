@@ -75,6 +75,10 @@ public class Game extends Main {
             player.setEquipment(2);
         System.out.println(player.getEquipment() + " EQ" + player.getHealth() + " hP with EQ");
             level.secondBackStory();
+            level.thirdChoiceStory();
+            player.setCoins(player.getCoins()+6);
+            Humans humans3a = new Humans(10,4,2,"Town's Guard", true);
+            Humans humans3b = new Humans(12,5,1,"Town's tall guard", true);
 
 
 

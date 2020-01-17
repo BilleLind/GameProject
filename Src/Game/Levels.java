@@ -90,16 +90,21 @@ public class Levels {
 
         public void secondChoiceStory() {
                 System.out.println("After Resting a while i decide to head on toward the town\n " +
-                        "while walking you are confronted by 2 strangers" +
-                        "they seem angry and ask you how you have come through this way" +
-                        "you tell them what happened and they charge you"); }
+                        "while walking you are confronted by 2 stranger\ns" +
+                        "they seem angry and ask you how you have come through this way\n"+
+                        "you tell them what happened and they charge you\n"); }
         public void secondBackStory() {
                 System.out.println("Weary after fighting 2 sets of enemies in one day\n" +
                         "you decide to find shelter in a nearby cave");
         }
         public void thirdChoiceStory() {
-                System.out.println("After a well deserved rest, you head out of the cave and towards the road" +
-                        " you decide to head on toward the nearby town, thinking there are no more bandit's" +
+                System.out.println("After a well deserved rest, you head out of the cave and towards the road\n" +
+                        " you decide to head on toward the nearby town, thinking there are no more bandit's\n" +
+                        "You come across chest of coins!\n");
+        }
+        public void fourthChoiceStory() {
+                System.out.println("you come across a town, you are stopped by 2 guards\n" +
+                        "they demand payment for entry, 4 coins out of your" + player.getCoins() +" coins\n" +
                         "");
         }
 
