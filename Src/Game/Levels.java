@@ -102,10 +102,44 @@ public class Levels {
                         " you decide to head on toward the nearby town, thinking there are no more bandit's\n" +
                         "You come across chest of coins!\n");
         }
+
         public void fourthChoiceStory() {
                 System.out.println("you come across a town, you are stopped by 2 guards\n" +
-                        "they demand payment for entry, 4 coins out of your" + player.getCoins() +" coins\n" +
-                        "");
+                        "they demand payment for entry, 4 coins out of your" + player.getCoins() +" coins\n" );
+        }
+        private  int fourthchoiceinlevel;
+
+        public void setFourthchoiceinlevel(int fourthchoiceinlevel) {
+                this.fourthchoiceinlevel = fourthchoiceinlevel;
+        }
+
+        public int getFourthchoiceinlevel() {
+                return fourthchoiceinlevel;
+        }
+
+        public void fourthChoices() {
+                System.out.println("You are left with 3 choices\n" +
+                        "1. pay them and enjoy the comforts of sleeping in a bed\n" +
+                        "2. slap on of them and see where it leads\n" +
+                        "3. leave");
+                boolean fourthchoice=true;
+                while (fourthchoice) {
+                        game.choice=input.next();
+                        switch (game.choice) {
+                                case "pay them":
+                                        System.out.println("Paying");
+                                        setFourthchoiceinlevel(1);
+                                        fourthchoice=false;
+                                case  " slap":
+                                        System.out.println("Slapping");
+                                        setFourthchoiceinlevel(2);
+                                        fourthchoice=false;
+                                case "leave":
+                                        System.out.println("Leaving");
+                                        setFourthchoiceinlevel(3);
+                                        fourthchoice=false;
+                        }
+                }
         }
 
 

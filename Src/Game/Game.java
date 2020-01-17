@@ -79,8 +79,21 @@ public class Game extends Main {
             player.setCoins(player.getCoins()+6);
             Humans humans3a = new Humans(10,4,2,"Town's Guard", true);
             Humans humans3b = new Humans(12,5,1,"Town's tall guard", true);
-
-
+            level.fourthChoiceStory();
+            level.fourthChoices();
+            if (level.getFourthchoiceinlevel()==1) {
+                System.out.println(player.getCoins() + " coins before");
+                player.setCoins(player.getCoins()-4);
+                System.out.println("you have " + player.getCoins() + " Coins left");
+            } else if (level.getFourthchoiceinlevel()==2) {
+                System.out.println("They attack you");
+                combat(humans3a, humans3b);
+                player.setHealth(24);
+                player.setAttack(player.getAttack()+1);
+                System.out.println("Weary after fighting you are left stronger");
+            } else if (level.getFourthchoiceinlevel()==3) {
+                System.out.println("You wonder out into the woods to sleep");
+            }
 
     }
 
