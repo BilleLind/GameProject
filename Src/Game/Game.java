@@ -77,7 +77,9 @@ public class Game extends Main {
             if (enteredTown) {
                 level.enteredTownPaid();
             } else if (slappedTheGuards) {
-
+                System.out.println("Not complete yet");
+            } else if (sleptInTheWoods) {
+                System.out.println("Not complete yet -2");
             }
 
     }
