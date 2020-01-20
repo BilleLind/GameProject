@@ -42,23 +42,26 @@ public class Levels {
         }
 
         public void firstChoices() {
-                System.out.println("choice 1: Attack the on in front - attack");
-                System.out.println("choice 2: Take to the trees and flee - flee");
-                System.out.println("choice 3: Subdue Them - subdue");
+                System.out.println("choice 1: Attack the on in front - 'attack'");
+                System.out.println("choice 2: Take to the trees and flee - 'flee' ");
+                System.out.println("choice 3: Subdue Them - 'subdue' ");
                 boolean firstChoiceRunning = true;
                 firstChoiceLoop:
                 while (firstChoiceRunning) {
                         game.choice = input.next();
                         switch (game.choice) {
                                 case "attack":
+                                case "1":
                                         System.out.println("attacking");
                                         setFirstchoiceinlevel(1);
                                         break firstChoiceLoop;
                                 case "flee":
+                                case "2":
                                         System.out.println("fleeing");
                                         setFirstchoiceinlevel(5);
                                         break firstChoiceLoop;
                                 case "subdue":
+                                case "3":
                                         System.out.println("subduing");
                                         setFirstchoiceinlevel(3);
                                         break firstChoiceLoop;
@@ -74,8 +77,6 @@ public class Levels {
                 }
         }
         public void firstBackStoryKilling() {
-                // the text after killing them
-               //unable to set the values of player in here, it won't change it while using it later
                 Game.player.setWeapon(2); Game.player.setHealth(24); Game.player.setCoins(4);
                 System.out.println("After killing the bandits you find a decent weapon and " + Game.player.getCoins() + " coins!");
                 System.out.println("You find some meat and decide to rest up");    }
@@ -111,10 +112,133 @@ public class Levels {
         }
         public void fourthChoiceStory() {
                 System.out.println("you come across a town, you are stopped by 2 guards\n" +
-                        "they demand payment for entry, 4 coins out of your" + Game.player.getCoins() +" coins\n" +
-                        "");
+                        "they demand payment for entry, 4 coins out of your" + Game.player.getCoins() +" coins\n"); }
+
+        private  int fourthchoiceinlevel;
+        public void setFourthchoiceinlevel(int fourthchoiceinlevel) {this.fourthchoiceinlevel = fourthchoiceinlevel;}
+        public int getFourthchoiceinlevel() {return fourthchoiceinlevel;}
+
+        public void fourthChoices() {
+                System.out.println("You are left with 3 choices\n" +
+                        "1. 'pay' them and enjoy the comforts of sleeping in a bed\n" +
+                        "2. 'slap' on of them and see where it leads\n" +
+                        "3. 'leave' ");
+                boolean fourthChoice=true;
+                while (fourthChoice) {
+                        game.choice=input.next();
+                        switch (game.choice) {
+                                case "pay":
+                                case "1":
+                                        System.out.println("Paying");
+                                        setFourthchoiceinlevel(1);
+                                        fourthChoice=false;
+                                case "slap":
+                                case "2":
+                                        System.out.println("Slapping");
+                                        setFourthchoiceinlevel(2);
+                                        fourthChoice=false;
+                                case "leave":
+                                case "3":
+                                        System.out.println("Leaving");
+                                        setFourthchoiceinlevel(3);
+                                        fourthChoice=false;
+                                default:
+                                        System.out.println("Failure - wrong entered");
+                        }
+                }
+        }
+        public void fourthChoicePay() {
+                System.out.println("You pay them  4 coins out of your: " +Game.player.getCoins() + " Coins\n" );
+                Game.player.setCoins(Game.player.getCoins()-4);}
+        public void fourthChoiceSlap() {
+                System.out.println("You Slap the one closets to you, the other attacks you right after it"); }
+        public void fourthSlapBackRewars() {
+                System.out.println("You come out in top and go into the town, feeling stronger ready for a nights rest");
+                Game.player.setHealth(20);Game.player.setAttack(Game.player.getAttack()+1); }
+
+
+
+        public void enteredTownPaid() {
+                System.out.println("The town is lively with several shops around, bustling with life\n" +
+                        "While bargaining and discovering the town you figure out several offers you can take\n" +
+                        "1. a bed to sleep in, food and ale for the night - for 4 coins\n" +
+                        "2. sleep with the horses, a new stronger weapon - 8 coins\n" +
+                        "3. all inclusive: weapon, a bed to sleep in and a cloak for the journey - 14 coins\n" +
+                        "4. choose the items yourself");
+                boolean enteredTownChoices=true;
+                while (enteredTownChoices) {
+                        game.choice=input.next();
+                        switch (game.choice) {
+                                case "1":
+                                        System.out.println("Having decided on the inn you eat and drink your fill and turn in for the night");
+                                        enteredTownChoices=false;
+                                case "2":
+                                        System.out.println("You cling tightly to your new weapon while sleeping in the rough");
+                                        Game.player.setWeapon(Game.player.getWeapon()+3);
+                                        enteredTownChoices=false;
+                                case "3":
+                                        System.out.println("Choosing to have it all, you celebrate");
+                                        Game.player.setWeapon(Game.player.getWeapon()+3);
+                                        Game.player.setEquipment(Game.player.getEquipment()+2);
+                                        enteredTownChoices=false;
+                                case "4":
+                                        chooseTheOffers(); }
+                }       }
+        public void chooseTheOffers() {
+                boolean check1=false, check2=false, check3=false, check4=false;
+                boolean choosingTheOffers=true;
+                System.out.println("You have these choices:\n" +
+                        "1. The inn with a bed, food and ale - 4 coins\n" +
+                        "2. The barn with the horses - 1 coin\n" +
+                        "3. A stronger weapon - 7 coins\n" +
+                        "4. A cloak to fend off the rain - 2 coins\n" +
+                        "type 'exit' after having chosen");
+                while (choosingTheOffers) {
+                        System.out.println("You have: " + Game.player.getCoins() + " Coins left");}
+                        String choiceBeeingMade =input.next();
+                        switch (choiceBeeingMade) {
+                                case "inn":
+                                case "1":
+                                        if (!check1) {
+                                        System.out.println("You have paid 4 coins for a bed and a meal");
+                                        Game.player.setCoins(Game.player.getCoins()-4); check1=true;}
+                                        else {System.out.println("You already paid for the inn"); }
+
+                                case "barn":
+                                case "2":
+                                        if (!check2) {
+                                        System.out.println("You have paid 1 coin for the warm comfort of horse shit");
+                                        Game.player.setCoins(Game.player.getCoins()-1);check2=true;}
+                                        else {System.out.println("You already paid for the barn"); }
+                                case "weapon":
+                                case "3":
+                                        if (!check3) {
+                                                System.out.println("You choose to find a stronger weapon, Gaining 3 attack");
+                                                Game.player.setWeapon(Game.player.getWeapon()+3);
+                                                Game.player.setCoins(Game.player.getCoins()-7);check3=true;}
+                                        else {System.out.println("You already paid for the inn"); }
+                                case "cloak":
+                                case "4":
+                                        if (!check4) {
+                                                System.out.println("You decide to be wise and get a cloak, boosting health with 2");
+                                                Game.player.setEquipment(Game.player.getEquipment()+2);
+                                                Game.player.setCoins(Game.player.getCoins()-2);check4=true;}
+                                        else {System.out.println("You already paid for the inn"); }
+                                case "exit":
+                                        if (check1 || check2) {choosingTheOffers=false;
+                                        } else System.out.println("You have to choose a place to sleep");
+
+                        }
         }
 
 
 }
+
+
+
+
+
+
+
+
 

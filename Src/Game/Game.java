@@ -7,7 +7,7 @@ public class Game extends Main {
     String choice;
     static Player player = new Player();
     boolean firstCombatWon =false, firstCombatFleet=false, firstCombatSubdued=false; // will be used for a victory sheet of sort
-
+    boolean enteredTown = false, sleptInTheWoods=false, slappedTheGuards=false;
 
     int attackChoice;
 
@@ -65,17 +65,19 @@ public class Game extends Main {
             level.fourthChoiceStory();
             level.fourthChoices();
             if (level.getFourthchoiceinlevel()==1) {
-                System.out.println(player.getCoins() + " coins before");
-                player.setCoins(player.getCoins()-4);
-                System.out.println("you have " + player.getCoins() + " Coins left");
+                level.fourthChoicePay();enteredTown=true;
             } else if (level.getFourthchoiceinlevel()==2) {
-                System.out.println("They attack you");
+                level.fourthChoiceSlap();
                 combat(humans3a, humans3b);
-                player.setHealth(24);
-                player.setAttack(player.getAttack()+1);
-                System.out.println("Weary after fighting you are left stronger");
-            } else if (level.getFourthchoiceinlevel()==3) {
-                System.out.println("You wonder out into the woods to sleep");
+                level.fourthSlapBackRewars();slappedTheGuards=true;
+            } else if (level.getFourthchoiceinlevel()==3) { System.out.println("You wonder out into the woods to sleep"); sleptInTheWoods=true;}
+
+            // break off of events one where you are in the town, perhaps one of each method of getting in
+            //and one for sleeping in the woods
+            if (enteredTown) {
+                level.enteredTownPaid();
+            } else if (slappedTheGuards) {
+
             }
 
     }
