@@ -13,9 +13,6 @@ public class Creature {
 
 
 
-
-
-
     public void setInUse(boolean inUse) {
         this.inUse = inUse;
     }
@@ -42,7 +39,7 @@ public class Creature {
     }
 
     public boolean opponentAlive() {
-        return health >0 ;
+        return health > 0 ;
 }
 
     public void setHealth(int health) {
