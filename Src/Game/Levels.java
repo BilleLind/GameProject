@@ -226,10 +226,41 @@ public class Levels {
                                         else {System.out.println("You already paid for the inn"); }
                                 case "exit":
                                         if (check1 || check2) {choosingTheOffers=false;
-                                        } else System.out.println("You have to choose a place to sleep");
+                                        } else System.out.println("You have to choose a place to sleep");} }
+
+                                        private int fightAfterSlap;
+
+        public int getFightAfterSlap() {
+                return fightAfterSlap;
+        }
+
+        public void setFightAfterSlap(int fightAfterSlap) {
+                this.fightAfterSlap = fightAfterSlap;
+        }
+
+        public void enterTownAfterSlap() {
+                System.out.println("After having won over the guards, you stroll into the town feeling good with yourself\n" +
+                                   "You spot a nice looking weapon and stroll over there, a while after looking at the weapon\n" +
+                                   "You find yourself surrounded by 3 men in arms, they demand penance in the form of coins\n" +
+                                   "For assaulting the guards - they demand 10 coins for the crime and banishment from the town\n" +
+                                   "You have 2 choices\n" +
+                                   "1. pay them 10 coins\n" +
+                                   "2. say fuck it and attack them! ");
+                boolean choicesForAfterSlapping=true;
+                townAfterSlapping: while (choicesForAfterSlapping) {
+                        String choiceBeingMade=input.next();
+                        switch (choiceBeingMade) {
+                                case "1":
+                                        if (Game.player.getCoins() >10) {
+                                        System.out.println("You pay them  10 coins of your" + Game.player.getCoins() + " Coins\n" +);
+                                        Game.player.setCoins(Game.player.getCoins()-10); break townAfterSlapping;}
+                                        else if (Game.player.getCoins() <10) {continue townAfterSlapping;}
+                                case "2":
 
                         }
+                }
         }
+
 
 
 }
