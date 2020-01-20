@@ -77,7 +77,13 @@ public class Game extends Main {
             if (enteredTown) {
                 level.enteredTownPaid();
             } else if (slappedTheGuards) {
-                System.out.println("Not complete yet");
+                level.enterTownAfterSlap();
+                if (level.getFightAfterSlap()==1) {
+                    Humans humanSlap1 = new Humans(14,6,2,"Town's Guard #1",true);
+                    Humans humanSlap2 = new Humans(14,5,2,"Town's guad #2", true);
+                    Humans humanSlap3 = new Humans(16,4,2,"Town's guard #3", true);
+
+                }
             } else if (sleptInTheWoods) {
                 System.out.println("Not complete yet -2");
             }
@@ -85,34 +91,32 @@ public class Game extends Main {
     }
 
 
-    public void combat(Creature creature, Creature creature2) {
+    public void combatAgainstThree(Creature creature, Creature creature2, Creature creature3) {
 
         boolean combatInProgress=true;
-        while (combatInProgress) {
-            if (creature.opponentAlive()) {
-                System.out.println(creature.getName() + "\t is alive | " + creature.getHealth() + " Health left");
-            } else if (!creature.opponentAlive()) {
-                System.out.println(creature.getName() + " Have been defeated");
-            }
-            if (creature2.opponentAlive() && !creature2.getInUse()) {
-                System.out.println(creature2.getName() + " is alive | " + creature2.getHealth() + " Health left");
 
-            } else if (!creature2.opponentAlive() && creature2.getInUse()) {
-                System.out.println(creature2.getName() + " Have been defeated");
-            }
+        while (combatInProgress) {
+            creatureCheck(creature);
+            creatureCheck(creature2);
+            creatureCheck(creature3);
+
             if (player.isAlive()){System.out.println(player.getName() + " Your are alive | " + player.getHealth() + " Health  left");}
 
-            if (!creature2.getInUse()) {
-                System.out.println("Choose which opponent you would attack!\n" +
-                        "Front/right = 1, Behind/left = 2"); attackChoice = input.nextInt(); }
-            else {System.out.println("Attack the opponent!"); attackChoice = 1;}
+            System.out.println("Choose which opponent you would attack!\n" +
+                        "Front/right = 1, Behind/left = 2, Middle = 2"); attackChoice = input.nextInt(); }
 
 
-            if (!creature.opponentAlive()) { // to make sure that are not a attack wasted, would you attack a dead body? :D
-                System.out.println(creature.getName() + " is dead DimWit!!");
-                attackChoice = 2;
-            }else if (!creature2.opponentAlive()) {System.out.println(creature2.getName() + " is dead DimWit!!");
-                attackChoice = 1;}
+
+            if (!creature.opponentAlive()) { System.out.println(creature.getName() + " is dead DimWit!!");
+                    if (!creature2.opponentAlive() && creature3.opponentAlive()) {attackChoice=3;}
+                    if (creature2.opponentAlive() && creature3.opponentAlive()) {attackChoice=2;}                       }
+            else if (!creature2.opponentAlive()) {System.out.println(creature2.getName() + " is dead DimWit!!");
+                    if (!creature.opponentAlive() && creature3.opponentAlive()) { attackChoice=3;}
+                    if (creature.opponentAlive() && ! creature3.opponentAlive()) {attackChoice = 1;}                    }
+            else if (!creature3.opponentAlive()) {System.out.println(creature3.getName() + " is dead dimWit!!");
+                    if (!creature.opponentAlive() && creature2.opponentAlive()) {attackChoice=2;}
+                    if (creature.opponentAlive() && !creature2.opponentAlive()) {attackChoice=1;}                       }
+
 
             if (attackChoice == 1) {
                 int playerDamage = Calculation.generateRandomInt(player.getAttack());
@@ -215,7 +219,10 @@ public class Game extends Main {
 
     }
 
-
+public void creatureCheck(Creature creature) {
+    if (creature.opponentAlive()) {System.out.println(creature.getName() + "\t is alive | " + creature.getHealth() + " Health left"); }
+    else if (!creature.opponentAlive()) {System.out.println(creature.getName() + " Have been defeated"); }
+}
 
 
 
@@ -245,9 +252,129 @@ public class Game extends Main {
     }
 
 
+    public void combat(Creature creature, Creature creature2) {
+
+        boolean combatInProgress=true;
+        while (combatInProgress) {
+            while (combatInProgress) {
+                creatureCheck(creature);
+                creatureCheck(creature2);
+
+            if (player.isAlive()){System.out.println(player.getName() + " Your are alive | " + player.getHealth() + " Health  left");}
+
+            if (!creature2.getInUse()) {System.out.println("Choose which opponent you would attack!\n" +
+                        "Front/right = 1, Behind/left = 2"); attackChoice = input.nextInt(); }
+            else {System.out.println("Attack the opponent!"); attackChoice = 1;}
 
 
-}
+            if (!creature.opponentAlive()) { // to make sure that are not a attack wasted, would you attack a dead body? :D
+                System.out.println(creature.getName() + " is dead DimWit!!");
+                attackChoice = 2;
+            }else if (!creature2.opponentAlive()) {System.out.println(creature2.getName() + " is dead DimWit!!");
+                attackChoice = 1;}
+
+            if (attackChoice == 1) {
+                int playerDamage = Calculation.generateRandomInt(player.getAttack());
+                System.out.println("You are attacking: " + creature.getName() + " | with " + playerDamage + " Damage!");
+
+                if (creature.getDefence() - playerDamage==-2) {
+                    System.out.println("Your damage broke through their defence of: " + creature.getDefence());
+                    creature.setHealth(creature.getHealth()-playerDamage);
+                } else if (creature.getDefence() - playerDamage==-1) {
+                    System.out.println("Your damage slipped through their defence of: " + creature.getDefence());
+                    creature.setHealth(creature.getHealth()- playerDamage);
+                } else if (creature.getDefence() == playerDamage) {
+                    System.out.println("Their defence are this attack's match!");
+                    creature.setHealth(creature.getHealth()-1);
+                }else if (creature.getDefence() -playerDamage==1) {
+                    System.out.println("Their defence are superior!");
+                } else if (creature.getDefence() - playerDamage==2) {
+                    System.out.println("Maybe run? perhaps"); }
+                else {creature.setHealth(creature.getHealth() - playerDamage + creature.getDefence());}
+
+                if (creature.opponentAlive()) {
+                    int addDamage = Calculation.generateRandomInt(creature.getAttack());
+
+                    if ( player.getDefence() > addDamage) {
+                        if (player.getDefence() - addDamage==-2) {
+                            System.out.println(creature.getName() + " Attack broke through your defence of: " + player.getDefence());
+                            player.setHealth(player.getHealth()-addDamage+player.getDefence()); }
+                        else if (player.getDefence() - addDamage==-1) {
+                            System.out.println(creature.getName() + " Attack slipped through your defence of: " + player.getDefence());
+                            player.setHealth(player.getHealth()- addDamage + player.getDefence()); }
+                        else if (player.getDefence() == addDamage) {
+                            System.out.println("Their attack equals our defence!");
+                            player.setHealth(player.getHealth()-1); }
+                        else if (player.getDefence() - addDamage ==1) {
+                            System.out.println("Your defence is superior!"); }
+                        else if (player.getDefence() - addDamage==2) {
+                            System.out.println("Their attack stood no chance against your defence!"); }
+                    } else {System.out.println(creature.getName() + " Dealt you " + addDamage + " Damage" + " mitigated by your defence of: " + player.getDefence());
+                        player.setHealth(player.getHealth() - addDamage + player.getDefence()); }
+
+                } if (creature2.opponentAlive()) {
+                    int addDamage2 = Calculation.generateRandomInt(creature2.getAttack());
+
+                    if ( player.getDefence() > addDamage2) {
+                        if (player.getDefence() - addDamage2==-2) {
+                            System.out.println(creature2.getName() + " Attack broke through your defence of: " + player.getDefence());
+                            player.setHealth(player.getHealth()-addDamage2+player.getDefence()); }
+                        else if (player.getDefence() - addDamage2==-1) {
+                            System.out.println(creature2.getName() + " Attack slipped through your defence of: " + player.getDefence());
+                            player.setHealth(player.getHealth()- addDamage2 + player.getDefence()); }
+                        else if (player.getDefence() == addDamage2) {
+                            System.out.println("Their attack equals our defence!");
+                            player.setHealth(player.getHealth()-1); }
+                        else if (player.getDefence() - addDamage2 ==1) {
+                            System.out.println("Your defence is superior!"); }
+                        else if (player.getDefence() - addDamage2==2) {
+                            System.out.println("Their attack stood no chance against your defence!"); }
+                    } else {System.out.println(creature2.getName() + " Dealt you " + addDamage2 + " Damage" + " mitigated by your defence of: " + player.getDefence());
+                        player.setHealth(player.getHealth() - addDamage2 + player.getDefence()); }
+                }
+            } else if (attackChoice == 2) {
+                int playerDamage = Calculation.generateRandomInt(player.getAttack());
+                System.out.println("You are attacking: " + creature2.getName() + " | with " + playerDamage + " Damage!");
+
+                if (creature2.getDefence() - playerDamage==-2) {
+                    System.out.println("Your damage broke through their defence of: " + creature2.getDefence());creature2.setHealth(creature2.getHealth()-playerDamage);}
+                else if (creature2.getDefence() - playerDamage==-1) {
+                    System.out.println("Your damage slipped through their defence of: " + creature2.getDefence());creature2.setHealth(creature2.getHealth()- playerDamage);}
+                else if (creature2.getDefence() == playerDamage) {
+                    System.out.println("Their defence are this attack's match!");creature2.setHealth(creature2.getHealth()-1);}
+                else if (creature2.getDefence() -playerDamage==1) {System.out.println("Their defence are superior!");}
+                else if (creature2.getDefence() - playerDamage==2) {System.out.println("Maybe run? perhaps"); }
+                else { creature2.setHealth(creature2.getHealth()-playerDamage+creature2.getDefence()); }
+
+                if (creature2.opponentAlive()) {
+                    int addDamage2 = Calculation.generateRandomInt(creature2.getAttack());
+
+                    if (player.getDefence() > addDamage2) {
+                        System.out.println(creature2.getName() + "  Attack was WEAK!");
+                        player.setHealth(player.getHealth()-1); // it would heal the mob, there by making it regenerate
+                    }else {System.out.println(creature2.getName() + " Dealt you " + addDamage2 + " Damage");
+                        player.setHealth(player.getHealth() - addDamage2 + player.getDefence());
+                        System.out.println(player.getHealth() + " Player health left");}
+                } if (creature.opponentAlive()) {
+                    int addDamage = Calculation.generateRandomInt(creature.getAttack());
+
+                    if ( player.getDefence() > addDamage) {
+                        // it would heal the mob, there by making it regenerate
+                        System.out.println(creature.getName() + " Attack was WEAK!");
+                        player.setHealth(player.getHealth() -1);
+                    } else {System.out.println(creature.getName() + " Dealt you " + addDamage + " Damage");
+                        player.setHealth(player.getHealth() - addDamage + player.getDefence());
+                        System.out.println(player.getHealth() + " Player health left");}
+                }
+            }
+            if (!creature.opponentAlive() && !creature2.opponentAlive() || creature2.getInUse()) {
+                combatInProgress=false;
+            }
+        }
+
+    }
+
+} }
 
 
 

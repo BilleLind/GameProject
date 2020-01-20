@@ -252,11 +252,12 @@ public class Levels {
                         switch (choiceBeingMade) {
                                 case "1":
                                         if (Game.player.getCoins() >10) {
-                                        System.out.println("You pay them  10 coins of your" + Game.player.getCoins() + " Coins\n" +);
+                                        System.out.println("You pay them  10 coins of your" + Game.player.getCoins() + " Coins\n" );
                                         Game.player.setCoins(Game.player.getCoins()-10); break townAfterSlapping;}
                                         else if (Game.player.getCoins() <10) {continue townAfterSlapping;}
                                 case "2":
-
+                                        setFightAfterSlap(1);
+                                        break townAfterSlapping;
                         }
                 }
         }
