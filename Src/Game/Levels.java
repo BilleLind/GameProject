@@ -9,7 +9,6 @@ public class Levels {
         Game game = new Game();
         private int numberOfAdversaries; //the mininum number of needed to encounter - maybe a "bonus boss"
         private int difficulty; // 1 easy, 2 little harder 3 medium and so on
-        Player player = new Player();
         int coins, health, weapon, equipment, attack,defence;
 
         final double chanceOfBossEncounter = 0.05; // 5%, times levelNumber so chances will be higher further one
@@ -77,13 +76,16 @@ public class Levels {
         public void firstBackStoryKilling() {
                 // the text after killing them
                //unable to set the values of player in here, it won't change it while using it later
-                System.out.println("After killing the bandits you find a decent weapon and " + player.getCoins() + " coins!");
+                Game.player.setWeapon(2); Game.player.setHealth(24); Game.player.setCoins(4);
+                System.out.println("After killing the bandits you find a decent weapon and " + Game.player.getCoins() + " coins!");
                 System.out.println("You find some meat and decide to rest up");    }
         public void firstBackStorySubdued() {
+                Game.player.setCoins(10); Game.player.setWeapon(3); Game.player.setHealth(25);
                 System.out.println("After subduing the enemy, you steal a fine sword from them");
                 System.out.println("They give you their hidden coins for letting them live");
-                System.out.println("Obtained " +player.getCoins() + " Coins!"); }
+                System.out.println("Obtained " +Game.player.getCoins() + " Coins!"); }
         public void firstBackStoryFleeing() {
+                Game.player.setAttack(Game.player.getAttack()-1); Game.player.setHealth(17);
                 System.out.println("while fleeing to the woods you get scratched and wounded");
                 System.out.println("you wound you right hand and lost a bit of health"); }
 
@@ -95,7 +97,12 @@ public class Levels {
                         "you tell them what happened and they charge you\n"); }
         public void secondBackStory() {
                 System.out.println("Weary after fighting 2 sets of enemies in one day\n" +
-                        "you decide to find shelter in a nearby cave");
+                        "you decide to find shelter in a nearby cave\n" +
+                        "There you find a small stash of things - some coins and equipment!");
+                Game.player.setHealth(24);
+                Game.player.setCoins(Game.player.getCoins()+2);
+                System.out.println(Game.player.getCoins() + " coins!");
+                Game.player.setEquipment(2);
         }
         public void thirdChoiceStory() {
                 System.out.println("After a well deserved rest, you head out of the cave and towards the road\n" +
@@ -104,7 +111,7 @@ public class Levels {
         }
         public void fourthChoiceStory() {
                 System.out.println("you come across a town, you are stopped by 2 guards\n" +
-                        "they demand payment for entry, 4 coins out of your" + player.getCoins() +" coins\n" +
+                        "they demand payment for entry, 4 coins out of your" + Game.player.getCoins() +" coins\n" +
                         "");
         }
 
