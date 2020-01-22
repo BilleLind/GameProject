@@ -52,21 +52,17 @@ public class Levels {
                         switch (game.choice) {
                                 case "attack":
                                 case "1":
-                                        System.out.println("attacking");
                                         setFirstchoiceinlevel(1);
                                         break firstChoiceLoop;
                                 case "flee":
                                 case "2":
-                                        System.out.println("fleeing");
                                         setFirstchoiceinlevel(5);
                                         break firstChoiceLoop;
                                 case "subdue":
                                 case "3":
-                                        System.out.println("subduing");
                                         setFirstchoiceinlevel(3);
                                         break firstChoiceLoop;
                                 case "cheat":
-                                        System.out.println("Cheating");
                                         setFirstchoiceinlevel(10);
                                         break firstChoiceLoop;
                                 default:
@@ -129,17 +125,14 @@ public class Levels {
                         switch (game.choice) {
                                 case "pay":
                                 case "1":
-                                        System.out.println("Paying");
                                         setFourthchoiceinlevel(1);
                                         fourthChoice=false;
                                 case "slap":
                                 case "2":
-                                        System.out.println("Slapping");
                                         setFourthchoiceinlevel(2);
                                         fourthChoice=false;
                                 case "leave":
                                 case "3":
-                                        System.out.println("Leaving");
                                         setFourthchoiceinlevel(3);
                                         fourthChoice=false;
                                 default:
