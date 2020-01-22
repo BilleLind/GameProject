@@ -1,6 +1,7 @@
 package Game;
 
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class Game extends Main {
     Scanner input = new Scanner(System.in);
@@ -14,16 +15,18 @@ public class Game extends Main {
     static Humans human2 = new Humans(0,0,0,"", false);
     static Humans human3 = new Humans(0, 0, 0, "", false);
 
-
+    static boolean combatInProgress=true;
+public void space() {
+    System.out.println("***********************************************");
+}
 
     public void gameRunning() {
 
-
-
-        System.out.println("Hello this is the menu for this game");
-        System.out.println("************************************");
-        System.out.println(" ");
-        System.out.println("Please select Your character (1 or 2)");
+        space();
+        System.out.println("***** 1. Choice - Kvothe the traveler *********\n" +
+                           "***** 2. Choice - Reshi the unkown ************");
+        space();
+        System.out.println("******* Please select Your character: *********");
         int yourChoice = input.nextInt();
         if (yourChoice == 1) {
             characterOne();
@@ -34,13 +37,14 @@ public class Game extends Main {
             //yourChoice = input.nextInt();
         } // a catch method if entered wrong
 
-
         //TODO START OF "PROGRAM" perhaps not a loop as it goes back instead and reads the story
         Levels level = new Levels();
         level.preStoryKvothe();
-
+        waitFor(20000);  // wait method first implement
         System.out.println("");
         level.firstChoicesStory();
+        waitFor(4000);
+        space();
         level.firstChoices();
         if (level.getFirstchoiceinlevel()==1) { // attack option
             firstCombatCombo();
@@ -57,7 +61,7 @@ public class Game extends Main {
         if (firstCombatSubdued) {level.firstBackStorySubdued();}
         else if (firstCombatWon) {level.firstBackStoryKilling();}
         else if (firstCombatFleet) {level.firstBackStoryFleeing();}
-
+                waitFor(20000);
             level.secondChoiceStory(); // reset of creature and creature2. with inUse already set
             human1.setName("Bandit's friend"); human2.setName("Bandit's Brother");
             human1.setHealth(6); human1.setAttack(4); human1.setDefence(1);
@@ -65,7 +69,9 @@ public class Game extends Main {
         combatAgainstThree(human1, human2, human3,2);
 
             level.secondBackStory();
+            waitFor(5000);
             level.thirdChoiceStory();
+            waitFor(4000);
             player.setCoins(player.getCoins()+6);
             human1.setName("Town's Guard"); human2.setName("Town's tall Guard");
             human1.setHealth(10); human1.setAttack(4); human1.setDefence(2);
@@ -102,22 +108,22 @@ public class Game extends Main {
 
     public void combatAgainstThree(Creature creature, Creature creature2, Creature creature3, int x) {
 
-        boolean combatInProgress=true;
+         combatInProgress=true;
 
 
         while (combatInProgress) {
 
-            System.out.println("******************************************");
+            System.out.println("***********************************************");
             creatureCheck(creature);
             creatureCheck(creature2);
             creatureCheck(creature3);
-            System.out.println("******************************************");
+            System.out.println("***********************************************"); //47
 
-            if (player.isAlive()){System.out.println(player.getName() + " Your are alive | " + player.getHealth() + " Health  left");
-                System.out.println("----------------------------------------");}
+            if (player.isAlive()){System.out.println("*** "+player.getName() + " Your are alive | " + player.getHealth() + " Health  left ***");
+                System.out.println("***********************************************");}
 
-            System.out.println("Choose which opponent you would attack!\n" +
-                        "Front/right = 1, Behind/left = 2, Middle = 3"); //attackChoice = input.nextInt();
+            System.out.println("*** Choose which opponent you would attack! ***\n" +
+                        "******* Right = 1, Left = 2, Middle = 3 *******");
 
         //TODO to be deleted or implemented, is more of a nice thing to have
            /* if (!creature.opponentAlive()) { System.out.println(creature.getName() + " is dead DimWit!!");
@@ -138,9 +144,12 @@ public class Game extends Main {
 
 
 public void creatureCheck(Creature creature) {
+        String star ="";
+        if (creature.getHealth() <10) {
+            star = "*"; }
         for (int i = 0; i <1; i ++) {
-    if (creature.opponentAlive() && creature.inUse) {System.out.println("*** "+ creature.getName() + " is alive | " + creature.getHealth() + " Health left ***"); }
-    else if (!creature.opponentAlive() && creature.inUse) {System.out.println(creature.getName() + " Have been defeated"); }              } }
+    if (creature.opponentAlive() && creature.inUse) {System.out.println("*** "+ creature.getName() + " is alive | " + creature.getHealth() + " Health left *******"+ star); }
+    else if (!creature.opponentAlive() && creature.inUse) {System.out.println( "*** "+creature.getName() + " Have been defeated **************" ); }              } }
 
 
 
@@ -174,14 +183,22 @@ public void creatureCheck(Creature creature) {
         human3.setInUse(false); // just in case
     }
 
+    public void  waitFor(int t)  {
+        try{Thread.sleep(t);}
+        catch (InterruptedException ex) {Thread.currentThread().interrupt();}
+    }
 
 
         public void combatFillAttackPart(Creature creature, Creature creature2, Creature creature3, int x) { // the x to be able to set which would the first, second or third.
-
+                if (creature3.inUse) {
+                    System.out.println("is in use? but how");
+                } if (creature3.getHealth()<0) {
+                System.out.println("Health but how?");
+            }
             System.out.println(attackChoice);
             if (attackChoice == 1) {
                 int playerDamage = useGenerate(player); // made use of this instead to shorten the code written
-                System.out.println("You are attacking: " + creature.getName() + " | with " + playerDamage + " Damage!");
+                System.out.print("You are attacking: " + creature.getName() + " | with " + playerDamage + " Damage! | ");
 
                 if (creature.getDefence() - playerDamage==-2) { System.out.println("Your damage broke through their defence of: " + creature.getDefence());creature.setHealth(creature.getHealth()-playerDamage); }
                 else if (creature.getDefence() - playerDamage==-1) {System.out.println("Your damage slipped through their defence of: " + creature.getDefence());creature.setHealth(creature.getHealth()- playerDamage); }
@@ -192,7 +209,7 @@ public void creatureCheck(Creature creature) {
                 retaliateCreature(creature,creature2,creature3); }
             else if (attackChoice == 2) {
                 int playerDamage = useGenerate(player);
-                System.out.println("You are attacking: " + creature2.getName() + " | with " + playerDamage + " Damage!");
+                System.out.print("You are attacking: " + creature2.getName() + " | with " + playerDamage + " Damage! | ");
 
                 if (creature2.getDefence() - playerDamage==-2) { System.out.println("Your damage broke through their defence of: " + creature2.getDefence());creature2.setHealth(creature2.getHealth()-playerDamage); }
                 else if (creature2.getDefence() - playerDamage==-1) {System.out.println("Your damage slipped through their defence of: " + creature2.getDefence());creature2.setHealth(creature2.getHealth()- playerDamage); }
@@ -212,6 +229,15 @@ public void creatureCheck(Creature creature) {
                 else {creature3.setHealth(creature3.getHealth() - playerDamage + creature3.getDefence());}
                 retaliateCreature(creature,creature2,creature3); }
 
+
+                if (creature.getHealth() <=0 && creature.inUse) {
+                     if (!creature2.inUse && !creature3.inUse) {
+                        combatInProgress= false; }
+                     if (creature2.getHealth() <= 0 && creature2.inUse) {
+                      if (!creature3.inUse) {combatInProgress=false;}
+                      if (creature3.inUse && creature3.getHealth() <=0) {combatInProgress=false;}
+                    }
+                }
             }
 
             public int useGenerate(Creature creature) {
@@ -245,10 +271,10 @@ public void creatureCheck(Creature creature) {
                     int addDamage2 = useGenerate(creature2);
                     if (player.getDefence() > addDamage2) {
                         if (player.getDefence() - addDamage2 == -2) {
-                            System.out.println(creature.getName() + " Attack broke through your defence of: " + player.getDefence());
+                            System.out.println(creature2.getName() + " Attack broke through your defence of: " + player.getDefence());
                             player.setHealth(player.getHealth() - addDamage2 + player.getDefence()); }
                         else if (player.getDefence() - addDamage2 == -1) {
-                            System.out.println(creature.getName() + " Attack slipped through your defence of: " + player.getDefence());
+                            System.out.println(creature2.getName() + " Attack slipped through your defence of: " + player.getDefence());
                             player.setHealth(player.getHealth() - addDamage2 + player.getDefence()); }
                         else if (player.getDefence() == addDamage2) {
                             System.out.println(creature2.getName() + " Attack equals our defence! (-1 hp)");

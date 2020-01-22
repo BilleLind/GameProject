@@ -4,7 +4,8 @@ package Game;
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("Hello this is my first real game project!");
+        System.out.println("***********************************************");
+        System.out.println("****** Welcome to my first game project *******");
 
 
 

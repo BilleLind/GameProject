@@ -42,22 +42,25 @@ public class Levels {
         }
 
         public void firstChoices() {
-                System.out.println("choice 1: Attack the on in front - 'attack'");
-                System.out.println("choice 2: Take to the trees and flee - 'flee' ");
-                System.out.println("choice 3: Subdue Them - 'subdue' ");
+                System.out.println("*** choice 1: 'Attack' the on in front ********");
+                System.out.println("*** choice 2: Take to the trees and 'flee' ****");
+                System.out.println("*** choice 3: 'Subdue' Them *******************");
                 boolean firstChoiceRunning = true;
                 firstChoiceLoop:
                 while (firstChoiceRunning) {
                         game.choice = input.next();
                         switch (game.choice) {
+                                case "Attack":
                                 case "attack":
                                 case "1":
                                         setFirstchoiceinlevel(1);
                                         break firstChoiceLoop;
+                                case "Flee":
                                 case "flee":
                                 case "2":
                                         setFirstchoiceinlevel(5);
                                         break firstChoiceLoop;
+                                case "Subdue":
                                 case "subdue":
                                 case "3":
                                         setFirstchoiceinlevel(3);
@@ -89,7 +92,7 @@ public class Levels {
 
         public void secondChoiceStory() {
                 System.out.println("After Resting a while i decide to head on toward the town\n " +
-                        "while walking you are confronted by 2 stranger\ns" +
+                        "while walking you are confronted by 2 stranger's\n" +
                         "they seem angry and ask you how you have come through this way\n"+
                         "you tell them what happened and they charge you\n"); }
         public void secondBackStory() {
