@@ -42,9 +42,9 @@ public class Levels {
         }
 
         public void firstChoices() {
-                System.out.println("*** choice 1: 'Attack' the on in front ********");
-                System.out.println("*** choice 2: Take to the trees and 'flee' ****");
-                System.out.println("*** choice 3: 'Subdue' Them *******************");
+                System.out.println("*** choice 1: 'Attack' the on in front      ***");
+                System.out.println("*** choice 2: Take to the trees and 'flee'  ***");
+                System.out.println("*** choice 3: 'Subdue' Them                 ***");
                 boolean firstChoiceRunning = true;
                 firstChoiceLoop:
                 while (firstChoiceRunning) {
