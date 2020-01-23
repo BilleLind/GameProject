@@ -96,8 +96,12 @@ public void space() {
                     human1.setHealth(14); human1.setAttack(6); human1.setDefence(2);
                     human2.setHealth(14); human2.setAttack(5); human2.setDefence(2);
                     human3.setInUse(true); // initialising the already set creature3
+                    combatAgainstThree(human1, human2, human3, 3);
 
-                }
+                } else if (level.getFightAfterSlap()==2) {level.enterTownSlapPaid();
+                if (level.getSlapPaid()==1){sleptInTheWoods=true;}}
+
+
             } else if (sleptInTheWoods) {
                 System.out.println("Not complete yet -2");
             }

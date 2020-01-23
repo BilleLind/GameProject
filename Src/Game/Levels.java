@@ -247,16 +247,54 @@ public class Levels {
                         String choiceBeingMade=input.next();
                         switch (choiceBeingMade) {
                                 case "1":
-                                        if (Game.player.getCoins() >10) {
+                                        if (Game.player.getCoins() >=10) {
                                         System.out.println("You pay them  10 coins of your" + Game.player.getCoins() + " Coins\n" );
-                                        Game.player.setCoins(Game.player.getCoins()-10); break townAfterSlapping;}
-                                        else if (Game.player.getCoins() <10) {continue townAfterSlapping;}
+                                        Game.player.setCoins(Game.player.getCoins()-10);
+                                        setFightAfterSlap(2);break townAfterSlapping;}
+                                        else if (Game.player.getCoins() <10) {
+                                                System.out.println("Not enough Coins!");
+                                                continue townAfterSlapping;}
                                 case "2":
                                         setFightAfterSlap(1);
                                         break townAfterSlapping;
                         }
                 }
+
         }
+        private int slapPaid;
+
+        public void setSlapPaid(int slapPaid) {
+                this.slapPaid = slapPaid;
+        }
+
+        public int getSlapPaid() {
+                return slapPaid;
+        }
+
+        public void enterTownSlapPaid() {
+                if (Game.player.getCoins() <0) {
+                System.out.println("After having paid them you walk around and try to decide what to do with the remainder\n" +
+                        "of your coins. only having: " + Game.player.getCoins() + " Coins left\n" +
+                        "Leaves you with 2 choices\n" +
+                        "1. go hunt bandits in the woods\n" +
+                        "2. sleep in a staple");
+                boolean choiceforslapPaid = true;
+                townSlapPaid: while(choiceforslapPaid) {
+                String choiceBeingMade=input.next();
+                switch (choiceBeingMade) {
+                        case "1":
+                                if (Game.player.getCoins() ==0) {System.out.println("not any money you wonder into the woods for a payday");
+                                        setSlapPaid(1); break townSlapPaid; }
+                                else {System.out.println("You choose to get the money for another day");
+                                        setSlapPaid(1); break townSlapPaid;}
+
+                        case "2":
+                                 if (Game.player.getCoins()<=1) {
+                                        System.out.println("You pay the stable boy to sleep there for the night");
+                                        Game.player.setCoins(Game.player.getCoins()-1);
+                                        setSlapPaid(2); break townSlapPaid; } } } }
+        }
+
 
 
 
