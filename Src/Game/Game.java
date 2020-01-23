@@ -103,8 +103,7 @@ public void space() {
 
 
             } else if (sleptInTheWoods) {
-                System.out.println("Not complete yet -2");
-            }
+                level.sleptInTheWoodsAfterTown(); }
 
     }
 

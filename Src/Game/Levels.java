@@ -294,6 +294,24 @@ public class Levels {
                                         Game.player.setCoins(Game.player.getCoins()-1);
                                         setSlapPaid(2); break townSlapPaid; } } } }
         }
+        public void sleptInTheWoodsAfterTown() {
+                System.out.println("Time go by faster than expected, having found a nice dry cave with running clean water nearby\n" +
+                        "you scavenge the nearby surroundings, in the start for bandits, later more and more for food\n" +
+                        "time go by....");
+                for (int i =0; i <10; i++) {
+                        System.out.println("Day " + i);}
+                System.out.println("You find a field filled with mushroom and decide to make a stew!");
+                for (int d =0; d <30; d++) {
+                        System.out.println("Day " + d + "|" + Game.player.getHealth() + " Health");
+                        Game.player.setHealth(Game.player.getHealth()-1);
+                        if (Game.player.getHealth() ==10) {
+                                System.out.println("You decide you have lived your live like your wanted and enjoy the last of it"); }
+                        if (Game.player.getHealth() ==5) {
+                                System.out.println("Birds have built a nest above your cave's opening, you are left with a smile"); }
+                        if (Game.player.getHealth() ==0) {
+                                System.out.println("Many months later villagers find your body, after fighting dragon sized birds!\n" +
+                                        "they figure out your body + the mushrooms made things go big, since you too look like a giant!");} }
+        }
 
 
 
