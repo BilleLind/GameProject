@@ -123,7 +123,7 @@ public class Levels {
                         "2. 'slap' on of them and see where it leads\n" +
                         "3. 'leave' ");
                 boolean fourthChoice=true;
-                while (fourthChoice) {
+                fourthChoiceWhile: while (fourthChoice) {
                         game.choice=input.next();
                         switch (game.choice) {
                                 case "pay":
@@ -133,7 +133,8 @@ public class Levels {
                                 case "slap":
                                 case "2":
                                         setFourthchoiceinlevel(2);
-                                        fourthChoice=false;
+                                        System.out.println("Test in level");
+                                        break fourthChoiceWhile;
                                 case "leave":
                                 case "3":
                                         setFourthchoiceinlevel(3);
@@ -152,7 +153,15 @@ public class Levels {
                 System.out.println("You come out in top and go into the town, feeling stronger ready for a nights rest");
                 Game.player.setHealth(20);Game.player.setAttack(Game.player.getAttack()+1); }
 
+                private int sleptInTheStableFOrQuest; // 1 for the stable quest 2 for inn quest
 
+        public int getSleptInTheStableFOrQuest() {
+                return sleptInTheStableFOrQuest;
+        }
+
+        public void setSleptInTheStableFOrQuest(int sleptInTheStableFOrQuest) {
+                this.sleptInTheStableFOrQuest = sleptInTheStableFOrQuest;
+        }
 
         public void enteredTownPaid() {
                 System.out.println("The town is lively with several shops around, bustling with life\n" +
@@ -167,15 +176,18 @@ public class Levels {
                         switch (game.choice) {
                                 case "1":
                                         System.out.println("Having decided on the inn you eat and drink your fill and turn in for the night");
+                                        setSleptInTheStableFOrQuest(2);
                                         enteredTownChoices=false;
                                 case "2":
                                         System.out.println("You cling tightly to your new weapon while sleeping in the rough");
                                         Game.player.setWeapon(Game.player.getWeapon()+3);
+                                        setSleptInTheStableFOrQuest(1);
                                         enteredTownChoices=false;
                                 case "3":
                                         System.out.println("Choosing to have it all, you celebrate");
                                         Game.player.setWeapon(Game.player.getWeapon()+3);
                                         Game.player.setEquipment(Game.player.getEquipment()+2);
+                                        setSleptInTheStableFOrQuest(2);
                                         enteredTownChoices=false;
                                 case "4":
                                         chooseTheOffers(); }
@@ -197,14 +209,16 @@ public class Levels {
                                 case "1":
                                         if (!check1) {
                                         System.out.println("You have paid 4 coins for a bed and a meal");
-                                        Game.player.setCoins(Game.player.getCoins()-4); check1=true;}
+                                        Game.player.setCoins(Game.player.getCoins()-4);
+                                                setSleptInTheStableFOrQuest(2);check1=true;}
                                         else {System.out.println("You already paid for the inn"); }
 
                                 case "barn":
                                 case "2":
                                         if (!check2) {
                                         System.out.println("You have paid 1 coin for the warm comfort of horse shit");
-                                        Game.player.setCoins(Game.player.getCoins()-1);check2=true;}
+                                        Game.player.setCoins(Game.player.getCoins()-1);check2=true;
+                                        setSleptInTheStableFOrQuest(1);}
                                         else {System.out.println("You already paid for the barn"); }
                                 case "weapon":
                                 case "3":
@@ -285,32 +299,56 @@ public class Levels {
                         case "1":
                                 if (Game.player.getCoins() ==0) {System.out.println("not any money you wonder into the woods for a payday");
                                         setSlapPaid(1); break townSlapPaid; }
-                                else {System.out.println("You choose to get the money for another day");
+                                else {System.out.println("You choose to keep the money for another day");
                                         setSlapPaid(1); break townSlapPaid;}
 
                         case "2":
                                  if (Game.player.getCoins()<=1) {
                                         System.out.println("You pay the stable boy to sleep there for the night");
                                         Game.player.setCoins(Game.player.getCoins()-1);
+                                         setSleptInTheStableFOrQuest(1);
                                         setSlapPaid(2); break townSlapPaid; } } } }
         }
         public void sleptInTheWoodsAfterTown() {
                 System.out.println("Time go by faster than expected, having found a nice dry cave with running clean water nearby\n" +
                         "you scavenge the nearby surroundings, in the start for bandits, later more and more for food\n" +
                         "time go by....");
+                int health = Game.player.getHealth();
                 for (int i =0; i <10; i++) {
+                        game.waitFor(1000);
                         System.out.println("Day " + i);}
                 System.out.println("You find a field filled with mushroom and decide to make a stew!");
-                for (int d =0; d <30; d++) {
-                        System.out.println("Day " + d + "|" + Game.player.getHealth() + " Health");
-                        Game.player.setHealth(Game.player.getHealth()-1);
+                for (int d =0; d < 30; d++) {
+                        System.out.println("Day " + d + "|" + health + " Health");
+                        Game.player.setHealth(health-1);
                         if (Game.player.getHealth() ==10) {
                                 System.out.println("You decide you have lived your live like your wanted and enjoy the last of it"); }
                         if (Game.player.getHealth() ==5) {
                                 System.out.println("Birds have built a nest above your cave's opening, you are left with a smile"); }
                         if (Game.player.getHealth() ==0) {
                                 System.out.println("Many months later villagers find your body, after fighting dragon sized birds!\n" +
-                                        "they figure out your body + the mushrooms made things go big, since you too look like a giant!");} }
+                                        "they figure out your body + the mushrooms made things go big, since you too look like a giant!");}
+                game.waitFor(2000);}
+                System.out.println(Game.player.getHealth() + " Player health");
+        }
+
+        public void questAfterTownStable() {
+                System.out.println("A merchant approaches you the day after leaving the barn with a quest of a sort\n" +
+                        "she ask you if you want to be a guard while going to northern country Leagaria capital Falaria\n" +
+                        "with nothing better to do and the promise of a worthwhile pay, you accept and go with");
+                game.waitFor(10000);
+                System.out.println("The Road to Falaria is long, yet well traveled, meeting many travelers, some kind\n" +
+                        "sharing their fire place other hostile...\n" +
+                        "Shouting begin waking you up for your midday nap, you grap you weapon and jump out of the wagon\n" +
+                        "you are faced against 2 thugs, the merchant fighting against a third");
+        game.waitFor(8000);}
+
+
+
+
+
+        public void questAfterTownInn() {
+                // if sleep in inn then a more refined quest and in stable a merchant. inn => higher reward/ harder quest
         }
 
 

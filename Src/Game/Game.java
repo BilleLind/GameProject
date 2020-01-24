@@ -7,6 +7,7 @@ public class Game extends Main {
     Scanner input = new Scanner(System.in);
     String choice;
     static Player player = new Player();
+
     boolean firstCombatWon =false, firstCombatFleet=false, firstCombatSubdued=false; // will be used for a victory sheet of sort
     boolean enteredTown = false, sleptInTheWoods=false, slappedTheGuards=false;
     int attackChoice;
@@ -65,6 +66,8 @@ public void space() {
                 waitFor(8000);
             level.secondChoiceStory(); // reset of creature and creature2. with inUse already set
         secondCombatCombo();
+        System.out.println(human1.getHealth() + " hp " + human1.getAttack() + "ATK" + human1.getName() + " name" + human1.getDefence() + " def");
+        System.out.println(human2.getHealth() + " hp " + human2.getAttack() + "ATK" + human2.getName() + " name" + human2.getDefence() + " def");
         combatAgainstThree(human1, human2, human3,2);
 
             level.secondBackStory();
@@ -72,14 +75,15 @@ public void space() {
             level.thirdChoiceStory();
             waitFor(4000);
             player.setCoins(player.getCoins()+6);
-            human1.setName("Town Guard"); human2.setName("Town lookout");
-            human1.setHealth(10); human1.setAttack(4); human1.setDefence(2);
-            human2.setHealth(12); human2.setAttack(5); human2.setDefence(1);
+                thirdCombatCombo();
             level.fourthChoiceStory();
+        System.out.println("test 1");
             level.fourthChoices();
             if (level.getFourthchoiceinlevel()==1) {
+                System.out.println("test 2");
                 level.fourthChoicePay();enteredTown=true;
             } else if (level.getFourthchoiceinlevel()==2) {
+                System.out.println("test 3");
                 level.fourthChoiceSlap();
                 combatAgainstThree(human1, human2, human3,2);
                 level.fourthSlapBackRewars();slappedTheGuards=true;
@@ -92,20 +96,32 @@ public void space() {
             } else if (slappedTheGuards) {
                 level.enterTownAfterSlap();
                 if (level.getFightAfterSlap()==1) {
-                    human1.setName("Town's Guard #1"); human2.setName("Town's Guard #2");
-                    human1.setHealth(14); human1.setAttack(6); human1.setDefence(2);
-                    human2.setHealth(14); human2.setAttack(5); human2.setDefence(2);
-                    human3.setInUse(true); // initialising the already set creature3
+                    fourthCombatCombo();
                     combatAgainstThree(human1, human2, human3, 3);
 
                 } else if (level.getFightAfterSlap()==2) {level.enterTownSlapPaid();
-                if (level.getSlapPaid()==1){sleptInTheWoods=true;}}
+                if (level.getSlapPaid()==1){sleptInTheWoods=true; }} // same with this one (read below)
 
-
-            } else if (sleptInTheWoods) {
+            } else if (sleptInTheWoods) { // this story line ends here, dies xD
                 level.sleptInTheWoodsAfterTown(); }
 
+
+            if (level.getSlapPaid()==2 || level.getSleptInTheStableFOrQuest()==1) { // if slept in barn - going north split off   - method split off not possible with Level level = new Level
+                level.questAfterTownStable();
+                firstCombatMerchant();
+                System.out.println(human1.getHealth() + " should be 15 not 14");
+                combatAgainstThree(human1, human2, human3, 2);
+            }
+
+            if (level.getSleptInTheStableFOrQuest()==2) { // if slept in the inn - going south split off
+
+            }
+
     }
+
+
+
+
 
 
     public void combatAgainstThree(Creature creature, Creature creature2, Creature creature3, int x) {
@@ -163,6 +179,9 @@ public void creatureCheck(Creature creature) {
         if (creature.getHealth() <10) {
             star = "*"; }
         for (int i = 0; i <1; i ++) {
+            if (creature.getName().length() < 8) {
+                if (creature.opponentAlive() && creature.inUse) {System.out.println("*** "+ creature.getName() + " is alive | " + creature.getHealth() + " Health lef        ***"+ star); }
+                else if (!creature.opponentAlive() && creature.inUse) {System.out.println( "*** "+creature.getName() + " Have been defeated             ***" ); } }
             if (creature.getName().length() == 8) {
                 if (creature.opponentAlive() && creature.inUse) {System.out.println("*** "+ creature.getName() + " is alive | " + creature.getHealth() + " Health left      ***"+ star); }
                 else if (!creature.opponentAlive() && creature.inUse) {System.out.println( "*** "+creature.getName() + " Have been defeated             ***" ); } }
@@ -224,9 +243,26 @@ public void creatureCheck(Creature creature) {
         human3.setInUse(false); // just in case
         }
         public void secondCombatCombo() {
-            human1.setName("Bandit "); human2.setName("Bandit's Brother");
+            human1.setName("Bandit friend"); human2.setName("Bandit's Brother");
             human1.setHealth(6); human1.setAttack(4); human1.setDefence(1);
             human2.setHealth(8); human2.setAttack(5); human2.setDefence(2);
+        }
+        public void thirdCombatCombo() {
+            human1.setName("Town Guard"); human2.setName("Town lookout");
+            human1.setHealth(10); human1.setAttack(4); human1.setDefence(2);
+            human2.setHealth(12); human2.setAttack(5); human2.setDefence(1);
+        }
+        public void fourthCombatCombo() {
+            human1.setName("Town's Guard #1"); human2.setName("Town's Guard #2");
+            human1.setHealth(14); human1.setAttack(6); human1.setDefence(2);
+            human2.setHealth(14); human2.setAttack(5); human2.setDefence(2);
+            human3.setInUse(true); // initialising the already set creature3
+        }
+        public void firstCombatMerchant() {
+        human1.setName("Thug #2"); human2.setName("Thug #3");
+        human1.setHealth(15); human1.setAttack(6); human1.setDefence(2);
+        human2.setHealth(16); human2.setAttack(6); human2.setDefence(1);
+        human3.setInUse(false);
         }
 
     public void  waitFor(int t)  {
