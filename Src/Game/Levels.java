@@ -261,6 +261,7 @@ public class Levels {
                         String choiceBeingMade=input.next();
                         switch (choiceBeingMade) {
                                 case "1":
+                                        System.out.println("Went into 1 in choicesForAfterSlapping");
                                         if (Game.player.getCoins() >=10) {
                                         System.out.println("You pay them  10 coins of your" + Game.player.getCoins() + " Coins\n" );
                                         Game.player.setCoins(Game.player.getCoins()-10);
@@ -269,7 +270,9 @@ public class Levels {
                                                 System.out.println("Not enough Coins!");
                                                 continue townAfterSlapping;}
                                 case "2":
+                                        System.out.println(choiceBeingMade + " choice being made");
                                         setFightAfterSlap(1);
+                                        choicesForAfterSlapping=false;
                                         break townAfterSlapping;
                         }
                 }
@@ -329,7 +332,7 @@ public class Levels {
                                 System.out.println("Many months later villagers find your body, after fighting dragon sized birds!\n" +
                                         "they figure out your body + the mushrooms made things go big, since you too look like a giant!");}
                 game.waitFor(2000);}
-                System.out.println(Game.player.getHealth() + " Player health");
+
         }
 
         public void questAfterTownStable() {

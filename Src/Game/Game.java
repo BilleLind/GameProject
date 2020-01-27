@@ -75,7 +75,7 @@ public void space() {
             level.thirdChoiceStory();
             waitFor(4000);
             player.setCoins(player.getCoins()+6);
-                thirdCombatCombo();
+            thirdCombatCombo();
             level.fourthChoiceStory();
         System.out.println("test 1");
             level.fourthChoices();
@@ -116,6 +116,9 @@ public void space() {
             if (level.getSleptInTheStableFOrQuest()==2) { // if slept in the inn - going south split off
 
             }
+            if (level.getSleptInTheStableFOrQuest()==1) {
+
+            }
 
     }
 
@@ -140,6 +143,7 @@ public void space() {
             if (player.getHealth() >=10) {
             if (player.isAlive()){System.out.println("*** "+player.getName() + " Your are alive | " + player.getHealth() + " Health left  ***");
                 System.out.println("***********************************************");} }
+            else if (!player.isAlive()) {combatInProgress=false;}
             if (player.getHealth() <10) {
                 {System.out.println("*** "+player.getName() + " Your are alive | " + player.getHealth() + " Health  left  ***");
                     System.out.println("***********************************************");} }}
@@ -178,7 +182,9 @@ public void creatureCheck(Creature creature) {
         String star ="";
         if (creature.getHealth() <10) {
             star = "*"; }
-        for (int i = 0; i <1; i ++) {
+        int i;
+        if (!creature.inUse) {i=2;}
+        for (i = 0; i <1; i ++) {
             if (creature.getName().length() < 8) {
                 if (creature.opponentAlive() && creature.inUse) {System.out.println("*** "+ creature.getName() + " is alive | " + creature.getHealth() + " Health lef        ***"+ star); }
                 else if (!creature.opponentAlive() && creature.inUse) {System.out.println( "*** "+creature.getName() + " Have been defeated             ***" ); } }
@@ -256,7 +262,8 @@ public void creatureCheck(Creature creature) {
             human1.setName("Town's Guard #1"); human2.setName("Town's Guard #2");
             human1.setHealth(14); human1.setAttack(6); human1.setDefence(2);
             human2.setHealth(14); human2.setAttack(5); human2.setDefence(2);
-            human3.setInUse(true); // initialising the already set creature3
+            human3.setName("Town's Guard #3");human3.setHealth(8); human3.setAttack(4); human3.setDefence(1);
+            human3.setInUse(true); // initialising the already set creature3 - wouldn't initialise, so i am setting it like the others
         }
         public void firstCombatMerchant() {
         human1.setName("Thug #2"); human2.setName("Thug #3");
@@ -320,11 +327,16 @@ public void creatureCheck(Creature creature) {
 
 
                 if (creature.getHealth() <=0 && creature.inUse) {
+                    System.out.println("failed first check");
                      if (!creature2.inUse && !creature3.inUse) {
+                         System.out.println("Failed second check");
                         combatInProgress= false; }
                      if (creature2.getHealth() <= 0 && creature2.inUse) {
-                      if (!creature3.inUse) {combatInProgress=false;}
-                      if (creature3.inUse && creature3.getHealth() <=0) {combatInProgress=false;}
+                         System.out.println("Failed third checl");
+                      if (!creature3.inUse) {
+                          System.out.println("Failed fourth Check");combatInProgress=false;}
+                      if (creature3.inUse && creature3.getHealth() <=0) {
+                          System.out.println("Failed fifth check");combatInProgress=false;}
                     }
                 }
             }
@@ -339,61 +351,90 @@ public void creatureCheck(Creature creature) {
             public void retaliateCreature(Creature creature, Creature creature2, Creature creature3) {
                 if (checkRetaliate(creature)) { // it keep saying that is is duplicated yet i cannot make it more short
                     int addDamage = useGenerate(creature); // wonder if there will be conflict when there is more than one enemy
-                    if (player.getDefence() > addDamage) {
-                        if (player.getDefence() - addDamage == -2) {
+                   // if (player.getDefence() > addDamage) {
+                         if (player.getDefence() - addDamage == -5) {
+                            System.out.println(creature.getName() + " Attack destroyed your defence of: " + player.getDefence());
+                            player.setHealth(player.getHealth() - 5);}
+                         else if (player.getDefence() - addDamage == -4) {
+                            System.out.println(creature.getName() + " Attack smashed through your defence of: " + player.getDefence());
+                            player.setHealth(player.getHealth() - 4); }
+                         else if (player.getDefence() - addDamage == -3) {
+                            System.out.println(creature.getName() + " Attack trashed through your defence of: " + player.getDefence());
+                            player.setHealth(player.getHealth() - 3); }
+                        else if (player.getDefence() - addDamage == -2) {
                             System.out.println(creature.getName() + " Attack broke through your defence of: " + player.getDefence());
-                            player.setHealth(player.getHealth() - addDamage + player.getDefence()); }
+                            player.setHealth(player.getHealth() - 2); }
                         else if (player.getDefence() - addDamage == -1) {
                             System.out.println(creature.getName() + " Attack slipped through your defence of: " + player.getDefence());
-                            player.setHealth(player.getHealth() - addDamage + player.getDefence()); }
+                            player.setHealth(player.getHealth() - 1); }
                         else if (player.getDefence() == addDamage) {
                             System.out.println(creature.getName()+" Attack equals our defence! (-1 hp)");
                             player.setHealth(player.getHealth() - 1); }
                         else if (player.getDefence() - addDamage == 1) {
                             System.out.println(creature.getName()+" Discover your defence superior!"); }
                         else if (player.getDefence() - addDamage == 2) {
-                            System.out.println(creature.getName() +" Attack stood no chance against your defence!"); } }
-                    else {
-                        System.out.println(creature.getName() + " Dealt you " + addDamage + " Damage" + " mitigated by your defence of: " + player.getDefence());
-                        player.setHealth(player.getHealth() - addDamage + player.getDefence()); } }
+                            System.out.println(creature.getName() +" Attack stood no chance against your defence!"); } //}
+                    //else {
+                      //  System.out.println(creature.getName() + " Dealt you " + addDamage + " Damage" + " mitigated by your defence of: " + player.getDefence());
+                      //  System.out.println("Using the else option");
+                      //  player.setHealth(player.getHealth() - addDamage + player.getDefence()); }
+                }
                 if (checkRetaliate(creature2)) {
                     int addDamage2 = useGenerate(creature2);
-                    if (player.getDefence() > addDamage2) {
-                        if (player.getDefence() - addDamage2 == -2) {
+                    //if (player.getDefence() > addDamage2) {
+                        if (player.getDefence() - addDamage2 == -5) {
+                            System.out.println(creature2.getName() + " Attack destroyed your defence of: " + player.getDefence());
+                            player.setHealth(player.getHealth() - 5);}
+                        else if (player.getDefence() - addDamage2 == -4) {
+                            System.out.println(creature2.getName() + " Attack smashed through your defence of: " + player.getDefence());
+                            player.setHealth(player.getHealth() - 4); }
+                        else if (player.getDefence() - addDamage2 == -3) {
+                            System.out.println(creature2.getName() + " Attack trashed through your defence of: " + player.getDefence());
+                            player.setHealth(player.getHealth() - 3); }
+                        else if (player.getDefence() - addDamage2 == -2) {
                             System.out.println(creature2.getName() + " Attack broke through your defence of: " + player.getDefence());
-                            player.setHealth(player.getHealth() - addDamage2 + player.getDefence()); }
+                            player.setHealth(player.getHealth() - 2); }
                         else if (player.getDefence() - addDamage2 == -1) {
                             System.out.println(creature2.getName() + " Attack slipped through your defence of: " + player.getDefence());
-                            player.setHealth(player.getHealth() - addDamage2 + player.getDefence()); }
+                            player.setHealth(player.getHealth() - 1); }
                         else if (player.getDefence() == addDamage2) {
-                            System.out.println(creature2.getName() + " Attack equals our defence! (-1 hp)");
+                            System.out.println(creature2.getName()+" Attack equals our defence! (-1 hp)");
                             player.setHealth(player.getHealth() - 1); }
                         else if (player.getDefence() - addDamage2 == 1) {
-                            System.out.println(creature2.getName() + " Discover your defence superior!"); }
+                            System.out.println(creature2.getName()+" Discover your defence superior!"); }
                         else if (player.getDefence() - addDamage2 == 2) {
-                            System.out.println(creature2.getName() +" Attack stood no chance against your defence!"); } }
-                    else {
+                            System.out.println(creature2.getName() +" Attack stood no chance against your defence!"); }// }
+                  /*  else {
                         System.out.println(creature2.getName() + " Dealt you " + addDamage2 + " Damage" + " mitigated by your defence of: " + player.getDefence());
-                        player.setHealth(player.getHealth() - addDamage2 + player.getDefence()); }
+                        player.setHealth(player.getHealth() - addDamage2 + player.getDefence()); } */
                 } if (checkRetaliate(creature3)) {
                     int addDamage3 = useGenerate(creature3);
-                    if (player.getDefence() > addDamage3) {
-                        if (player.getDefence() - addDamage3 == -2) {
+                    //if (player.getDefence() > addDamage3) {
+                        if (player.getDefence() - addDamage3 == -5) {
+                            System.out.println(creature3.getName() + " Attack destroyed your defence of: " + player.getDefence());
+                            player.setHealth(player.getHealth() - 5);}
+                        else if (player.getDefence() - addDamage3 == -4) {
+                            System.out.println(creature3.getName() + " Attack smashed through your defence of: " + player.getDefence());
+                            player.setHealth(player.getHealth() - 4); }
+                        else if (player.getDefence() - addDamage3 == -3) {
+                            System.out.println(creature3.getName() + " Attack trashed through your defence of: " + player.getDefence());
+                            player.setHealth(player.getHealth() - 3); }
+                        else if (player.getDefence() - addDamage3 == -2) {
                             System.out.println(creature3.getName() + " Attack broke through your defence of: " + player.getDefence());
-                            player.setHealth(player.getHealth() - addDamage3 + player.getDefence()); }
+                            player.setHealth(player.getHealth() - 2); }
                         else if (player.getDefence() - addDamage3 == -1) {
                             System.out.println(creature3.getName() + " Attack slipped through your defence of: " + player.getDefence());
-                            player.setHealth(player.getHealth() - addDamage3 + player.getDefence()); }
+                            player.setHealth(player.getHealth() - 1); }
                         else if (player.getDefence() == addDamage3) {
-                            System.out.println(creature3.getName() + " Attack equals our defence! (-1 hp)");
+                            System.out.println(creature3.getName()+" Attack equals our defence! (-1 hp)");
                             player.setHealth(player.getHealth() - 1); }
                         else if (player.getDefence() - addDamage3 == 1) {
-                            System.out.println(creature3.getName() +" Discover your defence superior!"); }
+                            System.out.println(creature3.getName()+" Discover your defence superior!"); }
                         else if (player.getDefence() - addDamage3 == 2) {
-                            System.out.println(creature3.getName() + " Attack stood no chance against your defence!"); } }
-                    else {
+                            System.out.println(creature3.getName() +" Attack stood no chance against your defence!"); } //}
+                  /*  else {
                         System.out.println(creature3.getName() + " Dealt you " + addDamage3 + " Damage" + " mitigated by your defence of: " + player.getDefence());
-                        player.setHealth(player.getHealth() - addDamage3 + player.getDefence()); }
+                        player.setHealth(player.getHealth() - addDamage3 + player.getDefence()); } */
             }
 
 
