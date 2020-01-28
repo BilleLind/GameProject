@@ -23,7 +23,7 @@ public class Game extends Main {
     }
 
     public void gameRunning() {
-
+        Levels level = new Levels();
         space();
         System.out.println("***** 1. Choice - Kvothe the traveler *********\n" +
                 "***** 2. Choice - Reshi the unkown ************");
@@ -32,15 +32,15 @@ public class Game extends Main {
         int yourChoice = input.nextInt();
         if (yourChoice == 1) {
             characterOne();
+            level.preStoryKvothe();
         } else if (yourChoice == 2) {
+            level.preStoryReshi();
             characterTwo();
-        } else {
-            System.out.println("Error - please choose 1");
-            //yourChoice = input.nextInt();
-        } // a catch method if entered wrong
+        } else {System.out.println("Error - please choose 1 or 2");
+        yourChoice=input.nextInt();}
 
         //TODO START OF "PROGRAM" perhaps not a loop as it goes back instead and reads the story
-        Levels level = new Levels();
+
         level.preStoryKvothe();
         space();
         System.out.println("Loading....");
@@ -79,8 +79,6 @@ public class Game extends Main {
         waitFor(8000);
         level.secondChoiceStory(); // reset of creature and creature2. with inUse already set
         secondCombatCombo();
-        System.out.println(human1.getHealth() + " hp " + human1.getAttack() + "ATK" + human1.getName() + " name" + human1.getDefence() + " def");
-        System.out.println(human2.getHealth() + " hp " + human2.getAttack() + "ATK" + human2.getName() + " name" + human2.getDefence() + " def");
         combatAgainstThree(human1, human2, human3, 2);
 
         level.secondBackStory();
@@ -132,9 +130,7 @@ public class Game extends Main {
             firstCombatMerchant();
             combatAgainstThree(human1, human2, human3, 2);
             level.afterFirstCombatMerchant();
-
-
-
+            //TODO stops here but can continue, first do the second one
 
 
         }
@@ -142,7 +138,8 @@ public class Game extends Main {
 
 
         if (level.getSleptInTheStableFOrQuest() == 2) { //todo if slept in the inn - going south split off
-
+            level.questAfterTownInn();
+            System.out.println("LOL");
         }
 
 

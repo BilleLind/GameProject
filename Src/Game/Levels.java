@@ -15,12 +15,16 @@ public class Levels {
 
 
         public void preStoryKvothe() {
-                System.out.println("in the times before one of the small wars considering the ancient wars all know\n" +
+                System.out.println("in the times before one of the many small wars considering how great the ancient wars\n" +
+                        "both in scale and of consequence that all know and fear\n" +
                         "there were one who grew up among those who many saw lesser than them self's\n" +
                         "he grew up among the Edema Ruh - son of one who mastered the stage and who one came from\n" +
                         "higher standing than most" + " he was called kvothe");
-
-
+        }
+        public void preStoryReshi() {
+                System.out.println("in ancient times the races were many, now not many know of those who came before\n" +
+                        "or walks among them, since they have the same skin, yet are greater than humans\n" +
+                        "Reshi is one among those of the ancient lineage");
         }
 
         public void firstChoicesStory() {
@@ -150,7 +154,7 @@ public class Levels {
                 System.out.println("You Slap the one closets to you, the other attacks you right after it"); }
         public void fourthSlapBackRewars() {
                 System.out.println("You come out in top and go into the town, feeling stronger ready for a nights rest");
-                Game.player.setHealth(20);Game.player.setAttack(Game.player.getAttack()+1); }
+                Game.player.setHealth(26);Game.player.setAttack(Game.player.getAttack()+1); }
 
                 private int sleptInTheStableFOrQuest; // 1 for the stable quest 2 for inn quest
 
@@ -355,6 +359,28 @@ public class Levels {
 
         public void questAfterTownInn() {
                 // if sleep in inn then a more refined quest and in stable a merchant. inn => higher reward/ harder quest
+                System.out.println("A noble approaches you the day after while you are having your breakfast\n" +
+                        "having asked for permission to sit, you allow him to do so\n" +
+                        "He heard tales of your exploits, having dealt 2 enemies at once, 2 days in a row\n" +
+                        "you are offered the job of guarding him while travelling to the southern province\n" +
+                        "You will be paid 20 golden coins! ");
+                game.waitFor(10000);
+                System.out.println("The road is well build, and even being in the back of the carriage is comfortable\n" +
+                        "you slowly fall asleep...");
+                game.waitFor(4000);
+                System.out.println("You awake finding yourself in noble clothes, with iron shackles on!!\n" +
+                        "there are barely any light and a eerie quiet atmosphere");
+                for (int i = 0; i < 30; i ++) {
+                        if (i==0){System.out.println("Times go bye, hoping something to happen");}
+
+                        if (i==7){System.out.println("A week have gone bye, having lived on the drops of water coming through\n" +
+                                        "the window and relying or deep meditation"); }
+                        if (i==14) { System.out.println("2 weeks.... you begin to loose hope"); }
+                        if (i==21) {System.out.println("3 weeks.....");}
+                        if (i==29)  {System.out.println("You drift into a deep slumber...");
+                                        Game.player.setHealth(0);}
+                        game.waitFor(3000);
+                }
         }
 
 
