@@ -30,7 +30,7 @@ public class Levels {
         public void firstChoicesStory() {
                 System.out.println("After wandering many miles and months, locked away all the parts that was wounded\n" +
                         "you finally became awoken by the strange rustling of the leaves\n" +
-                        "Suddenly you have been blocked by 2 men on in front of you, the other behind you\n" +
+                        "Suddenly you have been blocked by 2 men the one in front of you, the other behind you\n" +
                         "with the roads blocked and thick trees and uncertainty blocking both sides\n" +
                         "you are left with 3 choices");
         }

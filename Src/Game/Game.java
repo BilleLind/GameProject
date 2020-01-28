@@ -130,14 +130,14 @@ public class Game extends Main {
             firstCombatMerchant();
             combatAgainstThree(human1, human2, human3, 2);
             level.afterFirstCombatMerchant();
-            //TODO stops here but can continue, first do the second one
+            // stops here but can continue, first do the second one
 
 
         }
 
 
 
-        if (level.getSleptInTheStableFOrQuest() == 2) { //todo if slept in the inn - going south split off
+        if (level.getSleptInTheStableFOrQuest() == 2) {
             level.questAfterTownInn();
             System.out.println("LOL");
         }
@@ -191,17 +191,6 @@ public class Game extends Main {
 
             System.out.println("*** Choose which opponent you would attack! ***\n" +
                     "******* Right = 1, Left = 2, Middle = 3 *******");
-
-            //TODO to be deleted or implemented, is more of a nice thing to have
-           /* if (!creature.opponentAlive()) { System.out.println(creature.getName() + " is dead DimWit!!");
-                    if (!creature2.opponentAlive() && creature3.opponentAlive()) {attackChoice=3;}
-                    if (creature2.opponentAlive() && creature3.opponentAlive()) {attackChoice=2;}                       }
-            else if (!creature2.opponentAlive()) {System.out.println(creature2.getName() + " is dead DimWit!!");
-                    if (!creature.opponentAlive() && creature3.opponentAlive()) { attackChoice=3;}
-                    if (creature.opponentAlive() && ! creature3.opponentAlive()) {attackChoice = 1;}                    }
-            else if (!creature3.opponentAlive()) {System.out.println(creature3.getName() + " is dead dimWit!!");
-                    if (!creature.opponentAlive() && creature2.opponentAlive()) {attackChoice=2;}
-                    if (creature.opponentAlive() && !creature2.opponentAlive()) {attackChoice=1;} */
 
             attackChoice = input.nextInt();
             combatFillAttackPart(creature, creature2, creature3, x);
@@ -402,9 +391,7 @@ public class Game extends Main {
             System.out.print("You are attacking: " + creature.getName() + " | with " + playerDamage + " Damage! | ");
             if (creature.getHealth() <= 0) {
                 System.out.println("You target is dead, wtf?");
-                attackChoice = 2;
-            }
-
+                attackChoice = 2; }
             if (creature.getDefence() - playerDamage == -2) {
                 System.out.println("Your damage broke through their defence of: " + creature.getDefence());
                 creature.setHealth(creature.getHealth() - playerDamage);
