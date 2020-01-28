@@ -133,7 +133,6 @@ public class Levels {
                                 case "slap":
                                 case "2":
                                         setFourthchoiceinlevel(2);
-                                        System.out.println("Test in level");
                                         break fourthChoiceWhile;
                                 case "leave":
                                 case "3":
@@ -345,6 +344,10 @@ public class Levels {
                         "Shouting begin waking you up for your midday nap, you grap you weapon and jump out of the wagon\n" +
                         "you are faced against 2 thugs, the merchant fighting against a third");
         game.waitFor(8000);}
+        public void afterFirstCombatMerchant() {
+                System.out.println("Having defeated the thugs you discover that the merchant is strong, having dealt with the third thug herself\n" +
+                        "Time go by and you arrive safely in Falaria\n" +
+                        "To be Continued ;-D"); }
 
 
 

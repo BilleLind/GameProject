@@ -44,7 +44,7 @@ public class Player extends Creature {
     }
 
     public void setHealth(int health) {
-        this.health = health;
+        this.health = health-equipment;
     }
 
     public int getAttack() {
