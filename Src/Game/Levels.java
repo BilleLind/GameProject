@@ -7,6 +7,7 @@ public class Levels {
         private String levelName;
         private int levelNumber;
         Game game = new Game();
+        Player player = new Player();
         private int numberOfAdversaries; //the mininum number of needed to encounter - maybe a "bonus boss"
         private int difficulty; // 1 easy, 2 little harder 3 medium and so on
         int coins, health, weapon, equipment, attack,defence;
