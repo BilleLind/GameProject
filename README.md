@@ -15,7 +15,7 @@ Level classes => the class where all the methods for the different stories that 
 Main class => only use it to run the Game class gameRunning(); did use it to test different values along the way
 
 
-
+.Jar file is located in the Build folder
 
 Planlagt skema : https://docs.google.com/spreadsheets/d/1EihCtj8bxwQVB5FBi9V-Bx0CsJHS6A79Idgrg4x_0vc/edit?folder=0APlCyqVkw2WTUk9PVA#gid=0
 
